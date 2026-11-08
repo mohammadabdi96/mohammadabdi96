@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="fa">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>نسخه بازطراحی‌شده | عارضه‌یابی و مدل ارزش‌گذاری استراتژیک پارک فاوا</title>
+<link crossorigin="" href="https://cdn.jsdelivr.net" rel="preconnect"/>
+<link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#0a1628;--bg2:#0f1d33;--card:#16243d;--card2:#1c2f4d;
+  --accent:#3b82f6;--accent2:#60a5fa;--gold:#f59e0b;--red:#ef4444;
+  --green:#10b981;--cyan:#06b6d4;--purple:#a78bfa;
+  --txt:#f1f5f9;--txt2:#a8b8cc;--txt3:#7b8da6;
+  --border:rgba(148,163,184,.18);--glow:rgba(59,130,246,.25);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  font-family:'Vazirmatn','IRANSans',Tahoma,Arial,sans-serif;
+  background:var(--bg);color:var(--txt);direction:rtl;
+  background-image:
+    radial-gradient(circle at 15% 8%, rgba(59,130,246,.12), transparent 40%),
+    radial-gradient(circle at 85% 92%, rgba(167,139,250,.08), transparent 40%);
+  background-attachment:fixed;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:
+    linear-gradient(rgba(59,130,246,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59,130,246,.025) 1px, transparent 1px);
+  background-size:52px 52px;
+}
+.deck{position:relative;z-index:1;width:100vw;height:100vh;overflow:hidden}
+.slide{
+  position:absolute;inset:0;padding:36px 56px 100px;
+  opacity:0;visibility:hidden;pointer-events:none;
+  transform:translateY(18px) scale(.988);
+  transition:opacity .4s ease, transform .4s ease, visibility 0s .4s;
+  display:flex;flex-direction:column;overflow-y:auto;
+  z-index:1;
+  background:var(--bg);
+  isolation:isolate; /* create stacking context to prevent bleed */
+}
+.slide.active{
+  opacity:1;visibility:visible;pointer-events:auto;
+  transform:none;transition-delay:0s;
+  z-index:10;
+}
+.slide:not(.active){
+  /* extra safety against residual text rendering */
+  content-visibility: hidden;
+}
+.slide::-webkit-scrollbar{width:6px}
+.slide::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+
+.sh{display:flex;align-items:center;gap:14px;padding-bottom:14px;border-bottom:1px solid var(--border);margin-bottom:18px;flex-shrink:0}
+.sh .num{
+  font-size:13px;font-weight:800;color:#fff;
+  background:linear-gradient(135deg,var(--accent),var(--purple));
+  padding:5px 12px;border-radius:8px;letter-spacing:1px;
+  box-shadow:0 4px 14px rgba(59,130,246,.3);
+  flex-shrink:0;
+}
+.sh h1{font-size:22px;font-weight:800;flex:1;line-height:1.35}
+.sh .sec{font-size:11px;color:var(--txt3);font-weight:700;letter-spacing:1.1px;padding:4px 11px;border:1px solid var(--border);border-radius:20px;flex-shrink:0}
+.sb{flex:1;display:flex;flex-direction:column;gap:12px;min-height:0}
+
+/* ===== TITLE ===== */
+.title-slide{justify-content:center;align-items:center;text-align:center;background:radial-gradient(circle at 50% 40%,rgba(59,130,246,.14),transparent 60%);position:relative;overflow:hidden}
+.title-orn-1{position:absolute;top:12%;right:8%;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(59,130,246,.15),transparent 70%);pointer-events:none}
+.title-orn-2{position:absolute;bottom:10%;left:6%;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(167,139,250,.1),transparent 70%);pointer-events:none}
+.title-slide .kicker{font-size:13px;color:var(--accent2);font-weight:700;letter-spacing:2.5px;margin-bottom:20px;padding:7px 22px;border:1px solid rgba(59,130,246,.35);border-radius:20px;position:relative;background:rgba(59,130,246,.08)}
+.title-slide h1{font-size:48px;font-weight:900;line-height:1.2;margin-bottom:18px;background:linear-gradient(135deg,#fff 0%,var(--accent2) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;position:relative}
+.title-slide .sub{font-size:17px;color:var(--txt2);max-width:720px;line-height:1.75;margin-bottom:32px;position:relative}
+.title-meta{display:flex;gap:16px;position:relative;flex-wrap:wrap;justify-content:center}
+.title-meta .mi{display:flex;gap:12px;align-items:center;background:rgba(22,36,61,.7);border:1px solid var(--border);border-radius:12px;padding:13px 18px;text-align:right;backdrop-filter:blur(6px)}
+.title-meta .mi .micon{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;background:rgba(59,130,246,.18);color:var(--accent2);flex-shrink:0}
+.title-meta .mi:nth-child(2) .micon{background:rgba(16,185,129,.18);color:#6ee7b7}
+.title-meta .mi:nth-child(3) .micon{background:rgba(245,158,11,.18);color:#fcd34d}
+.title-meta .mlbl{font-size:11px;color:var(--txt3);font-weight:600;letter-spacing:.4px}
+.title-meta .mv{font-size:13px;color:var(--txt);font-weight:700;margin-top:3px}
+
+/* ===== CARDS generic ===== */
+.grid{display:grid;gap:12px}
+.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}.g5{grid-template-columns:repeat(5,1fr)}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;transition:.25s;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;right:0;left:0;height:2px;background:var(--accent);opacity:.65}
+.card:hover{background:var(--card2);border-color:rgba(59,130,246,.4);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.22)}
+.card .lbl{font-size:12px;color:var(--txt3);font-weight:600;margin-bottom:5px}
+.card .val{font-size:24px;font-weight:800;color:var(--txt);line-height:1.15}
+.card .unit{font-size:12px;color:var(--txt3);font-weight:500;margin-top:2px}
+.card .note{font-size:11.5px;color:var(--txt3);margin-top:8px;line-height:1.55}
+.card.accent{border-color:rgba(59,130,246,.4);background:linear-gradient(135deg,rgba(59,130,246,.14),rgba(59,130,246,.03))}
+.card.accent .val{color:var(--accent2)}.card.accent::before{background:var(--accent)}
+.card.red{border-color:rgba(239,68,68,.4);background:linear-gradient(135deg,rgba(239,68,68,.14),transparent)}
+.card.red .val{color:#fca5a5}.card.red::before{background:var(--red)}
+.card.gold{border-color:rgba(245,158,11,.4);background:linear-gradient(135deg,rgba(245,158,11,.14),transparent)}
+.card.gold .val{color:#fcd34d}.card.gold::before{background:var(--gold)}
+.card.green{border-color:rgba(16,185,129,.4);background:linear-gradient(135deg,rgba(16,185,129,.14),transparent)}
+.card.green .val{color:#6ee7b7}.card.green::before{background:var(--green)}
+.card.purple{border-color:rgba(167,139,250,.4);background:linear-gradient(135deg,rgba(167,139,250,.14),transparent)}
+.card.purple .val{color:var(--purple)}.card.purple::before{background:var(--purple)}
+
+/* ===== EXEC SUMMARY ===== */
+.exec-list{display:flex;flex-direction:column;gap:9px;margin-top:2px}
+.exec-item{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--border);border-radius:11px;padding:12px 16px;transition:.2s;border-right:3px solid var(--accent)}
+.exec-item:nth-child(2){border-right-color:var(--gold)}
+.exec-item:nth-child(3){border-right-color:var(--cyan)}
+.exec-item:nth-child(4){border-right-color:var(--purple)}
+.exec-item:nth-child(5){border-right-color:var(--green)}
+.exec-item:hover{background:var(--card2);transform:translateX(-3px)}
+.exec-item .n{font-size:19px;font-weight:900;color:var(--accent);min-width:30px;line-height:1.25;text-align:center;flex-shrink:0}
+.exec-item:nth-child(2) .n{color:var(--gold)}
+.exec-item:nth-child(3) .n{color:var(--cyan)}
+.exec-item:nth-child(4) .n{color:var(--purple)}
+.exec-item:nth-child(5) .n{color:var(--green)}
+.exec-item .t{font-size:13.5px;line-height:1.75;color:var(--txt2)}
+.exec-item .t b{color:var(--accent2);font-weight:700}
+
+/* ===== DASHBOARD ===== */
+.dash{display:grid;grid-template-columns:1.1fr 1fr 1fr;grid-template-rows:auto 1fr;gap:10px;height:100%;min-height:0}
+.dash .kpi-row{grid-column:1/-1;display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px 12px;cursor:pointer;transition:.2s;position:relative;overflow:hidden}
+.kpi::before{content:'';position:absolute;top:0;right:0;left:0;height:2px;background:var(--accent);opacity:.65}
+.kpi.red::before{background:var(--red)}.kpi.gold::before{background:var(--gold)}
+.kpi.green::before{background:var(--green)}.kpi.cyan::before{background:var(--cyan)}
+.kpi.purple::before{background:var(--purple)}
+.kpi:hover{background:var(--card2);transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.25)}
+.kpi .k{font-size:11px;color:var(--txt3);font-weight:600;margin-bottom:4px;line-height:1.3}
+.kpi .v{font-size:20px;font-weight:800;line-height:1.05;color:var(--accent2)}
+.kpi .v small{font-size:11px;color:var(--txt3);font-weight:500}
+.kpi.red .v{color:#fca5a5}.kpi.gold .v{color:#fcd34d}
+.kpi.green .v{color:#6ee7b7}.kpi.cyan .v{color:var(--cyan)}.kpi.purple .v{color:var(--purple)}
+
+.chart-box{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;overflow:hidden;position:relative;min-height:0}
+.chart-box::before{content:'';position:absolute;top:0;right:0;left:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--purple));opacity:.45}
+.chart-box h3{font-size:12.5px;font-weight:700;color:var(--txt2);margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
+.chart-box h3 span{font-size:10.5px;color:var(--txt3);font-weight:500}
+
+.funnel{display:flex;flex-direction:column;gap:6px;flex:1;justify-content:center}
+.fstep{display:flex;align-items:center;gap:8px}
+.fstep .bar{height:26px;border-radius:6px;display:flex;align-items:center;padding:0 11px;font-size:12px;font-weight:700;color:#fff;transition:.3s;white-space:nowrap}
+.fstep .lbl{font-size:11px;color:var(--txt2);min-width:48px;font-weight:600}
+.fstep .pct{font-size:11px;color:var(--txt3);min-width:38px}
+
+.bars{display:flex;flex-direction:column;gap:6px;flex:1;justify-content:center}
+.bar-row{display:grid;grid-template-columns:80px 1fr 36px;gap:8px;align-items:center;font-size:11px}
+.bar-row .nm{color:var(--txt2);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-row .track{background:rgba(255,255,255,.06);height:15px;border-radius:4px;overflow:hidden}
+.bar-row .fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.bar-row .fill.gold{background:linear-gradient(90deg,#b45309,var(--gold))}
+.bar-row .vl{color:var(--txt3);font-size:11px;text-align:left;direction:ltr}
+
+.donut-wrap{display:flex;align-items:center;justify-content:center;gap:14px;flex:1}
+.donut{width:110px;height:110px;border-radius:50%;position:relative;flex-shrink:0}
+.donut::after{content:'';position:absolute;inset:22%;background:var(--card);border-radius:50%}
+.donut-center{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:2;flex-direction:column}
+.donut-center .cv{font-size:18px;font-weight:800;color:var(--accent2)}
+.donut-center .cl{font-size:10px;color:var(--txt3)}
+.legend{display:flex;flex-direction:column;gap:5px;font-size:11px}
+.legend div{display:flex;align-items:center;gap:6px;color:var(--txt2)}
+.legend i{width:9px;height:9px;border-radius:3px;display:inline-block}
+
+/* ===== BULLETS as CARDS ===== */
+.bullets-cards{display:flex;flex-direction:column;gap:7px;list-style:none}
+.bullets-cards li{padding:10px 14px;background:var(--card);border:1px solid var(--border);border-radius:10px;border-right:3px solid var(--accent);display:flex;gap:11px;align-items:flex-start;font-size:13px;line-height:1.7;color:var(--txt2);transition:.2s}
+.bullets-cards li:hover{background:var(--card2);transform:translateX(-2px);box-shadow:0 4px 14px rgba(0,0,0,.15)}
+.bullets-cards .bn{font-size:11px;font-weight:900;padding:3px 8px;border-radius:5px;flex-shrink:0;line-height:1.4;background:rgba(59,130,246,.15);color:var(--accent2)}
+.bullets-cards li:nth-child(2){border-right-color:var(--gold)}
+.bullets-cards li:nth-child(2) .bn{background:rgba(245,158,11,.15);color:#fcd34d}
+.bullets-cards li:nth-child(3){border-right-color:var(--cyan)}
+.bullets-cards li:nth-child(3) .bn{background:rgba(6,182,212,.15);color:#67e8f9}
+.bullets-cards li:nth-child(4){border-right-color:var(--purple)}
+.bullets-cards li:nth-child(4) .bn{background:rgba(167,139,250,.15);color:var(--purple)}
+.bullets-cards li:nth-child(5){border-right-color:var(--green)}
+.bullets-cards li:nth-child(5) .bn{background:rgba(16,185,129,.15);color:#6ee7b7}
+.bullets-cards li b{color:var(--txt);font-weight:700}
+.bullets-cards .hl{color:var(--gold);font-weight:800}
+
+/* ===== ISSUE CARDS ===== */
+.issue-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:11px;flex:1;align-content:center}
+.issue-card{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:14px 12px;cursor:pointer;transition:.25s;position:relative;display:flex;flex-direction:column;gap:8px;min-height:210px}
+.issue-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.3)}
+.issue-card.critical{background:linear-gradient(160deg,rgba(239,68,68,.16),rgba(239,68,68,.04));border-color:rgba(239,68,68,.4)}
+.issue-card.critical:hover{box-shadow:0 12px 32px rgba(239,68,68,.2);border-color:var(--red)}
+.issue-card.high{background:linear-gradient(160deg,rgba(245,158,11,.15),rgba(245,158,11,.03));border-color:rgba(245,158,11,.4)}
+.issue-card.high:hover{box-shadow:0 12px 32px rgba(245,158,11,.2);border-color:var(--gold)}
+.ic-top{display:flex;align-items:center;justify-content:space-between;gap:6px}
+.ic-num{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#fff}
+.issue-card.critical .ic-num{background:linear-gradient(135deg,#dc2626,#ef4444);box-shadow:0 4px 12px rgba(239,68,68,.4)}
+.issue-card.high .ic-num{background:linear-gradient(135deg,#b45309,#f59e0b);box-shadow:0 4px 12px rgba(245,158,11,.4)}
+.ic-sev{font-size:10px;font-weight:800;letter-spacing:.4px;padding:3px 8px;border-radius:5px}
+.issue-card.critical .ic-sev{background:rgba(239,68,68,.25);color:#fca5a5}
+.issue-card.high .ic-sev{background:rgba(245,158,11,.25);color:#fcd34d}
+.issue-card h3{font-size:12.5px;font-weight:800;line-height:1.4;color:var(--txt);margin:2px 0}
+.ic-stat{font-size:16px;font-weight:900;line-height:1.15}
+.issue-card.critical .ic-stat{color:#fca5a5}
+.issue-card.high .ic-stat{color:#fcd34d}
+.ic-stat small{font-size:10.5px;color:var(--txt3);font-weight:500}
+.issue-card p{font-size:11.5px;color:var(--txt2);line-height:1.55;flex:1}
+.ic-hint{font-size:10.5px;color:var(--txt3);font-weight:600;display:flex;align-items:center;gap:4px;border-top:1px solid rgba(255,255,255,.05);padding-top:7px}
+.issue-card.critical .ic-hint{color:#fca5a5}
+.issue-card.high .ic-hint{color:#fcd34d}
+
+/* ===== MATRIX ===== */
+.matrix-wrap{display:grid;grid-template-columns:1fr 220px;gap:20px;flex:1;min-height:380px}
+.plot-container{position:relative;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px 20px 40px 50px}
+.plot{position:relative;width:100%;height:100%;background:
+  linear-gradient(rgba(148,163,184,.06) 1px,transparent 1px) 0 0/25% 25%,
+  linear-gradient(90deg,rgba(148,163,184,.06) 1px,transparent 1px) 0 0/25% 25%;
+  border-right:1px solid rgba(148,163,184,.2);border-bottom:1px solid rgba(148,163,184,.2);border-radius:4px;
+}
+.axis-y{position:absolute;right:-40px;top:50%;transform:translateY(-50%) rotate(90deg);font-size:11.5px;color:var(--txt3);font-weight:700;white-space:nowrap}
+.axis-x{position:absolute;bottom:-28px;left:50%;transform:translateX(-50%);font-size:11.5px;color:var(--txt3);font-weight:700}
+.bubble{position:absolute;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#fff;cursor:pointer;transform:translate(-50%,50%);transition:.25s}
+.bubble.crit{background:linear-gradient(135deg,#dc2626,#ef4444);box-shadow:0 4px 14px rgba(239,68,68,.45)}
+.bubble.high{background:linear-gradient(135deg,#b45309,#f59e0b);box-shadow:0 4px 14px rgba(245,158,11,.45)}
+.bubble:hover{transform:translate(-50%,50%) scale(1.18);z-index:5}
+.bubble-label{position:absolute;transform:translate(-50%,50%);font-size:10px;color:var(--txt2);font-weight:600;white-space:nowrap;pointer-events:none}
+.quad-line{position:absolute;pointer-events:none}
+.quad-line.h{left:0;right:0;top:50%;height:1px;background:rgba(148,163,184,.08)}
+.quad-line.v{top:0;bottom:0;left:50%;width:1px;background:rgba(148,163,184,.08)}
+.quad-lbl{position:absolute;font-size:9.5px;color:var(--txt3);font-weight:700;opacity:.6;pointer-events:none}
+.matrix-legend{display:flex;flex-direction:column;gap:10px;justify-content:center;font-size:11.5px;color:var(--txt2)}
+.matrix-legend .lg{display:flex;align-items:center;gap:8px;padding:8px 12px;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:8px}
+.matrix-legend .dot{width:14px;height:14px;border-radius:50%;flex-shrink:0}
+.matrix-legend .dot.crit{background:linear-gradient(135deg,#dc2626,#ef4444)}
+.matrix-legend .dot.high{background:linear-gradient(135deg,#b45309,#f59e0b)}
+.matrix-legend b{color:var(--txt);font-weight:700}
+
+/* ===== TRANSITION ===== */
+.transition{display:grid;grid-template-columns:1fr 60px 1fr;gap:14px;align-items:stretch;flex:1}
+.trans-col{border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden}
+.trans-col::before{content:'';position:absolute;top:0;right:0;left:0;height:3px}
+.trans-col.old{border:1px solid rgba(239,68,68,.3);background:linear-gradient(160deg,rgba(239,68,68,.08),transparent)}
+.trans-col.old::before{background:linear-gradient(90deg,var(--red),#fca5a5)}
+.trans-col.new{border:1px solid rgba(16,185,129,.3);background:linear-gradient(160deg,rgba(16,185,129,.08),transparent)}
+.trans-col.new::before{background:linear-gradient(90deg,var(--green),#6ee7b7)}
+.trans-col .th{font-size:12px;font-weight:700;letter-spacing:1px;color:var(--txt3);padding-bottom:10px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.trans-col.old .th{color:#fca5a5}.trans-col.new .th{color:#6ee7b7}
+.trans-col .th .ticn{width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px}
+.trans-col.old .th .ticn{background:rgba(239,68,68,.2);color:#fca5a5}
+.trans-col.new .th .ticn{background:rgba(16,185,129,.2);color:#6ee7b7}
+.trans-col h2{font-size:20px;font-weight:900;line-height:1.3}
+.trans-col.old h2{color:#fca5a5}.trans-col.new h2{color:#6ee7b7}
+.trans-col ul{display:flex;flex-direction:column;gap:8px;font-size:12.5px;color:var(--txt2);line-height:1.6;list-style:none}
+.trans-col ul li{padding-right:18px;position:relative}
+.trans-col ul li::before{content:'·';position:absolute;right:6px;font-weight:900;font-size:20px;line-height:1;top:-2px;color:var(--txt3)}
+.trans-arrow{display:flex;align-items:center;justify-content:center;font-size:36px;color:var(--accent);font-weight:300;text-shadow:0 0 20px var(--glow)}
+
+/* ===== PIPELINE ===== */
+.pipeline{display:flex;align-items:stretch;gap:0;flex:1;padding:12px 0;min-height:200px}
+.pstation{flex:1;display:flex;flex-direction:column;position:relative;padding:0 4px}
+.pstation .box{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 8px;text-align:center;cursor:pointer;transition:.25s;flex:1;display:flex;flex-direction:column;justify-content:center;gap:5px;position:relative;overflow:hidden}
+.pstation .box::before{content:'';position:absolute;top:0;right:0;left:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--purple));opacity:.7}
+.pstation .box:hover{background:var(--card2);border-color:var(--accent);transform:translateY(-4px);box-shadow:0 10px 28px var(--glow)}
+.pstation .num{font-size:10px;font-weight:800;color:var(--accent);letter-spacing:1px}
+.pstation .nm{font-size:12.5px;font-weight:800;color:var(--txt);line-height:1.3}
+.pstation .out{font-size:10px;color:var(--txt3);line-height:1.4;margin-top:2px}
+.pstation .relief{font-size:9.5px;color:var(--gold);font-weight:700;margin-top:6px;padding-top:6px;border-top:1px dashed rgba(255,255,255,.05)}
+.pstation:not(:last-child)::after{content:'←';position:absolute;left:-8px;top:50%;transform:translateY(-50%);font-size:20px;color:var(--accent);z-index:2;font-weight:300}
+
+/* ===== COMPARISON ===== */
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:14px;flex:1}
+.cmp-col{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:16px;display:flex;flex-direction:column;gap:8px;position:relative;overflow:hidden}
+.cmp-col::before{content:'';position:absolute;top:0;right:0;left:0;height:3px}
+.cmp-col.now{border-color:rgba(239,68,68,.25);background:linear-gradient(160deg,rgba(239,68,68,.06),transparent)}
+.cmp-col.now::before{background:linear-gradient(90deg,var(--red),#fca5a5)}
+.cmp-col.next{border-color:rgba(16,185,129,.25);background:linear-gradient(160deg,rgba(16,185,129,.06),transparent)}
+.cmp-col.next::before{background:linear-gradient(90deg,var(--green),#6ee7b7)}
+.cmp-col h3{font-size:13px;font-weight:800;margin-bottom:4px;padding-bottom:8px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.cmp-col h3 .cicn{width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900}
+.cmp-col.now h3{color:#fca5a5}.cmp-col.now h3 .cicn{background:rgba(239,68,68,.2)}
+.cmp-col.next h3{color:#6ee7b7}.cmp-col.next h3 .cicn{background:rgba(16,185,129,.2)}
+.cmp-row{display:flex;flex-direction:column;gap:2px;padding:6px 0;border-bottom:1px dashed rgba(255,255,255,.05)}
+.cmp-row:last-child{border-bottom:none}
+.cmp-row .k{font-size:10px;color:var(--txt3);font-weight:600}
+.cmp-row .v{font-size:12px;color:var(--txt);font-weight:600;line-height:1.5}
+
+/* ===== GANTT ===== */
+.gantt{display:grid;grid-template-columns:190px repeat(8,1fr);gap:5px;font-size:10.5px;flex:1;align-content:start}
+.gantt .gh{color:var(--txt3);font-weight:700;text-align:center;padding:6px 2px;font-size:9.5px;border-bottom:1px solid var(--border)}
+.gantt .gl{color:var(--txt2);font-weight:600;display:flex;align-items:center;gap:6px;padding:0 6px;font-size:10.5px}
+.gantt .gl-ph{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:5px;font-size:10px;font-weight:900;color:#fff;flex-shrink:0}
+.gantt .gc{display:flex;gap:3px;align-items:center;padding:2px 0}
+.gantt .gb{height:14px;border-radius:4px;flex:1;box-shadow:0 2px 6px rgba(0,0,0,.2)}
+.gantt .gb.p1{background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.gantt .gb.p2{background:linear-gradient(90deg,#b45309,var(--gold))}
+.gantt .gb.p3{background:linear-gradient(90deg,#7e22ce,var(--purple))}
+.gantt .gb.empty{background:transparent;box-shadow:none}
+
+/* ===== TABLES ===== */
+.tbl-wrap{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;position:relative}
+.tbl-wrap::before{content:'';position:absolute;top:0;right:0;left:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--purple));z-index:1}
+.tbl{width:100%;border-collapse:collapse;font-size:11.5px;background:transparent}
+.tbl th{background:rgba(59,130,246,.1);color:var(--accent2);font-weight:700;padding:10px 10px;text-align:right;font-size:11px;border-bottom:1px solid var(--border)}
+.tbl td{padding:9px 10px;border-bottom:1px solid rgba(255,255,255,.04);color:var(--txt2)}
+.tbl tr:last-child td{border-bottom:none}
+.tbl tr:hover td{background:rgba(255,255,255,.02);color:var(--txt)}
+.tbl td b{color:var(--txt)}
+.tbl .rA{background:rgba(16,185,129,.12);color:#6ee7b7;text-align:center;font-weight:800;border-radius:4px}
+.tbl .rR{background:rgba(59,130,246,.12);color:var(--accent2);text-align:center;font-weight:800;border-radius:4px}
+.tbl .rC{background:rgba(245,158,11,.12);color:#fcd34d;text-align:center;font-weight:800;border-radius:4px}
+.tbl .rI{color:var(--txt3);text-align:center}
+
+/* ===== KPI redesign ===== */
+.kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;flex:1}
+.kpi-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:10px;position:relative;overflow:hidden}
+.kpi-card::before{content:'';position:absolute;top:0;right:0;left:0;height:3px}
+.kpi-card.down::before{background:linear-gradient(90deg,var(--green),var(--cyan))}
+.kpi-card.up::before{background:linear-gradient(90deg,var(--green),#6ee7b7)}
+.kpi-card.gold-kpi::before{background:linear-gradient(90deg,var(--gold),#fcd34d)}
+.kpi-card h4{font-size:12.5px;font-weight:700;color:var(--txt);display:flex;align-items:center;justify-content:space-between}
+.kpi-card h4 .dir{font-size:9.5px;padding:2px 7px;border-radius:4px;font-weight:700;letter-spacing:.5px}
+.kpi-card.down h4 .dir{background:rgba(16,185,129,.15);color:#6ee7b7}
+.kpi-card.up h4 .dir{background:rgba(16,185,129,.15);color:#6ee7b7}
+.kpi-card.gold-kpi h4 .dir{background:rgba(245,158,11,.15);color:#fcd34d}
+.kpi-nums{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.kpi-nums .cur{font-size:22px;font-weight:900;color:#fca5a5}
+.kpi-nums .arr{color:var(--txt3);font-size:14px}
+.kpi-nums .tgt{font-size:22px;font-weight:900;color:#6ee7b7}
+.kpi-nums .lbl{font-size:10px;color:var(--txt3);font-weight:500;margin-right:2px}
+.kpi-card.gold-kpi .kpi-nums .tgt{color:#fcd34d}
+.kpi-bar{position:relative;height:8px;background:rgba(255,255,255,.06);border-radius:4px;overflow:hidden}
+.kpi-bar .fill{position:absolute;top:0;bottom:0;right:0;background:linear-gradient(90deg,#dc2626,#ef4444);border-radius:4px;transition:.5s}
+.kpi-bar .fill.gold{background:linear-gradient(90deg,#b45309,#f59e0b)}
+.kpi-bar .target-mark{position:absolute;top:-2px;bottom:-2px;width:2px;background:#6ee7b7;box-shadow:0 0 6px rgba(16,185,129,.6)}
+.kpi-delta{font-size:11px;color:var(--txt2);display:flex;align-items:center;gap:4px}
+.kpi-delta b{color:#6ee7b7}
+.kpi-card.gold-kpi .kpi-delta b{color:#fcd34d}
+.kpi-note{font-size:10px;color:var(--txt3);line-height:1.5;padding-top:6px;border-top:1px solid rgba(255,255,255,.04);margin-top:auto}
+
+/* ===== RISKS upgraded ===== */
+.risk{display:grid;grid-template-columns:2fr 90px 3fr;gap:12px;align-items:center;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:11px 14px;font-size:11px;border-right:3px solid var(--red);transition:.2s}
+.risk:hover{background:var(--card2);transform:translateX(-2px);box-shadow:0 4px 14px rgba(0,0,0,.15)}
+.risk.med{border-right-color:var(--gold)}
+.risk .rn{color:var(--txt);font-weight:700;font-size:11.5px;display:flex;align-items:center;gap:8px}
+.risk .ri{width:22px;height:22px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;background:rgba(239,68,68,.18);color:#fca5a5;flex-shrink:0;font-weight:900}
+.risk.med .ri{background:rgba(245,158,11,.18);color:#fcd34d}
+.risk .rl{text-align:center;font-weight:800;padding:3px 8px;border-radius:4px;font-size:10px}
+.risk .rl.h{background:rgba(239,68,68,.18);color:#fca5a5}
+.risk .rl.m{background:rgba(245,158,11,.18);color:#fcd34d}
+.risk .rm{color:var(--txt2);font-size:10.5px;line-height:1.55}
+
+/* ===== DECISIONS ===== */
+.dec-list{display:flex;flex-direction:column;gap:9px;flex:1;justify-content:center}
+.dec{display:grid;grid-template-columns:42px 1fr 130px 100px;gap:12px;align-items:center;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:11px 14px;transition:.2s;border-right:3px solid var(--accent)}
+.dec:nth-child(2){border-right-color:var(--gold)}
+.dec:nth-child(3){border-right-color:var(--cyan)}
+.dec:nth-child(4){border-right-color:var(--purple)}
+.dec:nth-child(5){border-right-color:var(--green)}
+.dec:hover{background:var(--card2);transform:translateX(-3px);box-shadow:0 4px 14px rgba(0,0,0,.15)}
+.dec .dn{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--purple));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px}
+.dec:nth-child(2) .dn{background:linear-gradient(135deg,#b45309,var(--gold))}
+.dec:nth-child(3) .dn{background:linear-gradient(135deg,#0e7490,var(--cyan))}
+.dec:nth-child(4) .dn{background:linear-gradient(135deg,#7e22ce,var(--purple))}
+.dec:nth-child(5) .dn{background:linear-gradient(135deg,#047857,var(--green))}
+.dec .dt{font-size:12.5px;font-weight:700;color:var(--txt);line-height:1.4}
+.dec .dt small{display:block;font-size:10.5px;color:var(--txt3);font-weight:500;margin-top:2px}
+.dec .dd{font-size:10.5px;color:#fcd34d;font-weight:700;text-align:center;background:rgba(245,158,11,.1);padding:5px 8px;border-radius:5px}
+.dec .dw{font-size:10px;color:var(--txt3);text-align:center}
+
+/* ===== SUMMARY ===== */
+.summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;flex:1;align-content:center}
+.sum-card{border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden;min-height:180px;transition:.25s}
+.sum-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.3)}
+.sum-card .icn{font-size:30px;margin-bottom:4px;opacity:.9}
+.sum-card h3{font-size:12px;letter-spacing:1px;font-weight:700;opacity:.9}
+.sum-card .val{font-size:26px;font-weight:900;line-height:1.1;margin:6px 0}
+.sum-card p{font-size:12px;line-height:1.6;opacity:.85;margin-top:auto}
+.sum-card.s1{background:linear-gradient(160deg,rgba(239,68,68,.15),rgba(239,68,68,.03));border:1px solid rgba(239,68,68,.35);color:#fca5a5}
+.sum-card.s2{background:linear-gradient(160deg,rgba(59,130,246,.15),rgba(59,130,246,.03));border:1px solid rgba(59,130,246,.35);color:var(--accent2)}
+.sum-card.s3{background:linear-gradient(160deg,rgba(16,185,129,.15),rgba(16,185,129,.03));border:1px solid rgba(16,185,129,.35);color:#6ee7b7}
+
+/* ===== FINAL ===== */
+.final-slide{justify-content:center;align-items:center;text-align:center;background:radial-gradient(circle at 50% 50%,rgba(59,130,246,.1),transparent 60%);position:relative;overflow:hidden}
+.final-orn{position:absolute;border-radius:50%;pointer-events:none}
+.final-orn.a{top:15%;right:10%;width:220px;height:220px;background:radial-gradient(circle,rgba(59,130,246,.12),transparent 70%)}
+.final-orn.b{bottom:12%;left:8%;width:280px;height:280px;background:radial-gradient(circle,rgba(167,139,250,.08),transparent 70%)}
+.final-slide h1{font-size:44px;font-weight:900;line-height:1.2;margin-bottom:24px;background:linear-gradient(135deg,#fff,var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;position:relative}
+.final-slide .line{font-size:16px;color:var(--txt2);line-height:1.9;max-width:600px;margin-bottom:20px;position:relative}
+.final-slide .pill{display:inline-block;font-size:12px;color:var(--txt3);padding:8px 22px;border:1px solid var(--border);border-radius:20px;margin-top:24px;letter-spacing:1px;background:rgba(22,36,61,.5);backdrop-filter:blur(4px);position:relative}
+
+/* ===== NAV ===== */
+.nav{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:12px;background:rgba(15,29,51,.92);backdrop-filter:blur(14px);border:1px solid var(--border);border-radius:40px;padding:6px 12px;z-index:100;box-shadow:0 4px 20px rgba(0,0,0,.3)}
+.nav button{background:transparent;border:none;color:var(--txt2);font-size:16px;cursor:pointer;padding:5px 11px;border-radius:20px;transition:.2s;font-family:inherit}
+.nav button:hover{background:rgba(59,130,246,.22);color:var(--accent2)}
+.nav .ctr{font-size:12px;color:var(--txt2);font-weight:600;min-width:58px;text-align:center;direction:ltr}
+.nav .ctr b{color:var(--accent2)}
+.progress{position:fixed;top:0;left:0;right:0;height:3px;background:rgba(255,255,255,.06);z-index:200}
+.progress .bar{height:100%;background:linear-gradient(90deg,var(--accent),var(--purple));transition:width .4s;width:0}
+.dots{position:fixed;bottom:72px;left:50%;transform:translateX(-50%);display:flex;gap:5px;z-index:100;max-width:80vw;flex-wrap:wrap;justify-content:center;direction:rtl}
+.nav-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.18);cursor:pointer;transition:.2s;border:none;padding:0}
+.nav-dot.active{background:var(--accent2);width:18px;border-radius:3px}
+.nav-dot:hover{background:rgba(255,255,255,.4)}
+.hint{position:fixed;bottom:18px;right:18px;font-size:11px;color:var(--txt3);z-index:100;display:flex;align-items:center;gap:5px}
+.hint kbd{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:2px 6px;font-family:inherit;font-size:10px;color:var(--txt2)}
+
+/* ===== MODAL ===== */
+.modal{position:fixed;inset:0;background:rgba(5,12,24,.9);backdrop-filter:blur(10px);z-index:500;display:flex;align-items:center;justify-content:center;padding:32px;opacity:0;visibility:hidden;transition:.3s}
+.modal.show{opacity:1;visibility:visible}
+.modal-content{background:linear-gradient(160deg,var(--bg2),var(--bg));border:1px solid var(--border);border-radius:16px;padding:22px 26px;max-width:760px;width:100%;max-height:84vh;overflow-y:auto;transform:scale(.96);transition:.3s;box-shadow:0 24px 64px rgba(0,0,0,.45);position:relative}
+.modal-content::before{content:'';position:absolute;top:0;right:0;left:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--purple));border-radius:16px 16px 0 0}
+.modal.show .modal-content{transform:scale(1)}
+.modal-content h2{font-size:18px;font-weight:800;margin-bottom:12px;color:var(--accent2);display:flex;justify-content:space-between;align-items:center;padding-bottom:11px;border-bottom:1px solid var(--border)}
+.modal-content .close{background:transparent;border:1px solid var(--border);color:var(--txt2);width:28px;height:28px;border-radius:7px;cursor:pointer;font-size:13px;font-family:inherit}
+.modal-content .close:hover{background:rgba(239,68,68,.15);border-color:var(--red);color:#fca5a5}
+.modal-content::-webkit-scrollbar{width:6px}
+.modal-content::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+.modal-content p{font-size:13px;line-height:1.85;color:var(--txt2);margin-bottom:11px}
+.modal-content p b{color:var(--txt)}
+.modal-content h3{font-size:14px;color:var(--accent2);margin:13px 0 7px;font-weight:700}
+.modal-content ul{list-style:none;display:flex;flex-direction:column;gap:6px;font-size:12.5px;color:var(--txt2);line-height:1.7}
+.modal-content ul li{padding-right:18px;position:relative}
+.modal-content ul li::before{content:'▸';position:absolute;right:4px;color:var(--accent2);font-weight:900}
+.modal-content ul li b{color:var(--txt)}
+.modal-content .callout{background:rgba(245,158,11,.09);border-right:3px solid var(--gold);border-radius:6px;padding:11px 14px;font-size:12px;color:var(--txt2);line-height:1.7;margin:11px 0}
+.modal-content .callout b{color:#fcd34d}
+
+@media(max-width:1200px){
+  .slide{padding:28px 28px 100px}
+  .title-slide h1{font-size:40px}
+  .sh h1{font-size:20px}
+  .g5,.issue-grid{grid-template-columns:repeat(3,1fr)}
+  .g4{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:900px){
+  .slide{padding:22px 16px 110px}
+  .g4,.g5,.issue-grid{grid-template-columns:repeat(2,1fr)}
+  .g3{grid-template-columns:1fr}
+  .pipeline{flex-wrap:wrap}
+  .pstation{flex:1 1 30%}
+  .dec{grid-template-columns:1fr;gap:6px}
+  .gantt{font-size:9px;grid-template-columns:110px repeat(8,1fr)}
+  .kpi-grid{grid-template-columns:1fr}
+  .summary-grid{grid-template-columns:1fr}
+  .title-meta{flex-direction:column;align-items:stretch}
+  .title-slide h1{font-size:32px}
+  .dash{grid-template-columns:1fr}
+  .matrix-wrap{grid-template-columns:1fr}
+}
+</style>
+<style>
+/* Executive redesign refinements */
+.decision-callout{margin-top:18px;padding:14px 18px;border:1px solid rgba(96,165,250,.42);border-right:4px solid var(--accent2);border-radius:12px;background:rgba(59,130,246,.09);color:var(--txt);font-size:13px;line-height:1.9}
+.validation-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.validation-card{position:relative;padding:17px 18px 16px;background:linear-gradient(145deg,rgba(28,47,77,.92),rgba(22,36,61,.82));border:1px solid var(--border);border-radius:14px;min-height:126px}
+.validation-card.wide{grid-column:1/-1;min-height:90px}
+.validation-card .vnum{font-size:11px;font-weight:900;color:var(--accent2);margin-bottom:8px;letter-spacing:1px}
+.validation-card h3{font-size:14px;color:var(--txt);margin-bottom:7px}
+.validation-card p{font-size:11.5px;color:var(--txt2);line-height:1.9}
+.data-note{margin-top:14px;padding:12px 15px;border:1px solid rgba(245,158,11,.35);border-radius:11px;background:rgba(245,158,11,.07);color:var(--txt2);font-size:11px;line-height:1.9}
+.data-note b{color:#fbbf24}
+@media(max-width:700px){.validation-grid{grid-template-columns:1fr}.validation-card.wide{grid-column:auto}}
+</style></head>
+<body>
+<div class="progress"><div class="bar" id="prog"></div></div>
+<div class="deck" id="deck">
+<!-- ===== 01: TITLE ===== -->
+<section class="slide active title-slide">
+<div class="title-orn-1"></div>
+<div class="title-orn-2"></div>
+<div class="kicker">پارک فناوری اطلاعات و ارتباطات · ارائه تصمیم‌محور · ۱۴۰۵</div>
+<h1>از ارزیابی پرونده
+به راهبری سرمایه‌گذاری فناورانه</h1>
+<p class="sub">عارضه‌یابی فرایند حمایت شبکه تاد و پیشنهاد مدل شش‌ایستگاهی برای انتخاب، ارزش‌گذاری و پایش طرح‌ها</p>
+<div class="title-meta">
+<div class="mi">
+<div class="micon">◉</div>
+<div>
+<div class="mlbl">دامنه بررسی</div>
+<div class="mv">۸ فراخوان · ۱۸ مرکز · ۱۴ استان · ۲۶۲ ثبت‌نام</div>
+</div>
+</div>
+<div class="mi">
+<div class="micon">◈</div>
+<div>
+<div class="mlbl">روش</div>
+<div class="mv">تحلیل کمّی داده‌ها و مصاحبه با داوران</div>
+</div>
+</div>
+<div class="mi">
+<div class="micon">◐</div>
+<div>
+<div class="mlbl">مخاطب</div>
+<div class="mv">معاونت توسعه فناوری پارک فاوا</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ===== 02: EXEC SUMMARY ===== -->
+<section class="slide">
+<header class="sh"><span class="num">۰۲</span><h1>سه مسئله، یک تغییر ضروری</h1><span class="sec">خلاصه مدیریتی · تصمیم مورد انتظار</span></header>
+<div class="sb">
+<div class="exec-list"><div class="exec-item"><div class="n">۱</div><div class="t"><b>تحقق حمایت با گلوگاه روبه‌روست.</b> در داده‌های ارائه‌شده، ۳۸.۶۵ میلیارد تومان معادل ۲۷.۲٪ مصوب پارک، در ۳۲ پرونده از دستور کار خارج شده است؛ ۲۱ پرونده با علت غالبِ نقص مدارک.</div></div><div class="exec-item"><div class="n">۲</div><div class="t"><b>تصمیم پارک الزاماً به تأمین مالی منتهی نمی‌شود.</b> از ۱۴۲.۱ میلیارد تومان مصوب پارک، ۸۴.۴۵ میلیارد تومان در صندوق تصویب شده است؛ معادل ۵۹.۴٪ مصوبه پارک.</div></div><div class="exec-item"><div class="n">۳</div><div class="t"><b>پیشنهاد، تغییر کل چرخه حمایت است.</b> مدل شش‌ایستگاهی، غربالگری صلاحیت را به ارزش‌گذاری، تعیین حمایت مرحله‌ای و پایش اثر متصل می‌کند.</div></div></div>
+<div class="decision-callout"><b>درخواست از جلسه:</b> موافقت با اجرای پایلوت مدل، تعیین مالک اجرایی، و آغاز مذاکره با صندوق برای هم‌راستاسازی مراحل ارزیابی و پرداخت.</div></div>
+</section>
+<!-- ===== 03: DASHBOARD ===== -->
+<section class="slide">
+<header class="sh"><span class="num">۰۳</span><h1>گلوگاه اصلی در تبدیل ثبت‌نام به پرداخت دیده می‌شود</h1><span class="sec">وضعیت موجود</span></header>
+<div class="sb">
+<div class="dash">
+<div class="kpi-row">
+<div class="kpi" data-drill="kpi-reg"><div class="k">ثبت‌نام</div><div class="v">۲۶۲ <small>طرح</small></div></div>
+<div class="kpi cyan" data-drill="kpi-dav"><div class="k">داوری‌شده</div><div class="v">۱۶۸ <small>۶۴٪</small></div></div>
+<div class="kpi green" data-drill="kpi-acc"><div class="k">پذیرش</div><div class="v">۱۱۰ <small>۴۲٪</small></div></div>
+<div class="kpi gold" data-drill="kpi-park"><div class="k">مصوب پارک</div><div class="v">۱۴۲.۱ <small>م.ت</small></div></div>
+<div class="kpi purple" data-drill="kpi-fund"><div class="k">مصوب صندوق</div><div class="v">۸۴.۴۵ <small>م.ت</small></div></div>
+<div class="kpi red" data-drill="kpi-exit"><div class="k">خروج از دستور</div><div class="v">۳۸.۶۵ <small>م.ت</small></div></div>
+</div>
+<div class="chart-box">
+<h3>قیف تبدیل <span>ثبت‌نام تا پرداخت</span></h3>
+<div class="funnel">
+<div class="fstep"><span class="lbl">ثبت‌نام</span><div class="bar" style="width:100%;background:linear-gradient(90deg,#1e40af,#3b82f6)">۲۶۲</div><span class="pct">۱۰۰٪</span></div>
+<div class="fstep"><span class="lbl">داوری</span><div class="bar" style="width:64%;background:linear-gradient(90deg,#0e7490,#06b6d4)">۱۶۸</div><span class="pct">۶۴٪</span></div>
+<div class="fstep"><span class="lbl">پذیرش</span><div class="bar" style="width:42%;background:linear-gradient(90deg,#047857,#10b981)">۱۱۰</div><span class="pct">۴۲٪</span></div>
+<div class="fstep"><span class="lbl">پرداخت</span><div class="bar" style="width:23%;background:linear-gradient(90deg,#b45309,#f59e0b)">۶۰</div><span class="pct">۲۳٪</span></div>
+<div class="fstep"><span class="lbl">خروج</span><div class="bar" style="width:12%;background:linear-gradient(90deg,#991b1b,#ef4444)">۳۲</div><span class="pct">۱۲٪</span></div>
+</div>
+</div>
+<div class="chart-box">
+<h3>تمرکز جغرافیایی <span>۳ استان = ۴۸٪ ثبت‌نام</span></h3>
+<div class="bars">
+<div class="bar-row"><span class="nm">یزد</span><div class="track"><div class="fill" style="width:100%"></div></div><span class="vl">۷۶</span></div>
+<div class="bar-row"><span class="nm">مازندران</span><div class="track"><div class="fill" style="width:41%"></div></div><span class="vl">۳۱</span></div>
+<div class="bar-row"><span class="nm">کهگیلویه</span><div class="track"><div class="fill" style="width:26%"></div></div><span class="vl">۲۰</span></div>
+<div class="bar-row"><span class="nm">فارس</span><div class="track"><div class="fill gold" style="width:21%"></div></div><span class="vl">۱۶</span></div>
+<div class="bar-row"><span class="nm">آذربایجان‌ش</span><div class="track"><div class="fill gold" style="width:20%"></div></div><span class="vl">۱۵</span></div>
+<div class="bar-row"><span class="nm">سمنان</span><div class="track"><div class="fill gold" style="width:18%"></div></div><span class="vl">۱۴</span></div>
+<div class="bar-row"><span class="nm">سایر</span><div class="track"><div class="fill" style="width:36%;opacity:.6"></div></div><span class="vl">۹۰</span></div>
+</div>
+</div>
+<div class="chart-box">
+<h3>توزیع سطح آمادگی فناوری <span>TRL</span></h3>
+<div class="donut-wrap">
+<div class="donut" style="background:conic-gradient(#06b6d4 0 81.5%, #10b981 81.5% 90.9%, #3b82f6 90.9% 100%)">
+<div class="donut-center"><span class="cv">۸۱٪</span><span class="cl">TRL ۴–۶</span></div>
+</div>
+<div class="legend">
+<div><i style="background:#3b82f6"></i>TRL ۱–۳: ۹.۱٪</div>
+<div><i style="background:#06b6d4"></i>TRL ۴–۶: ۸۱.۵٪</div>
+<div><i style="background:#10b981"></i>TRL ۷–۹: ۹.۴٪</div>
+</div>
+</div>
+</div>
+</div>
+<div style="text-align:center;font-size:10.5px;color:var(--txt3);margin-top:6px">برای دیدن جزئیات هر شاخص، روی کارت کلیک کنید</div>
+</div>
+</section>
+<!-- ===== 04: KEY FINDINGS (upgraded) ===== -->
+<section class="slide">
+<header class="sh"><span class="num">۰۴</span><h1>داده‌ها از سه شکاف اجرایی و یک مسئله طراحی حکایت دارند</h1><span class="sec">وضعیت موجود</span></header>
+<div class="sb">
+<div class="grid g5" style="margin-bottom:6px">
+<div class="card red"><div class="lbl">نرخ خروج</div><div class="val">۲۷.۲٪</div><div class="unit">از مصوب پارک</div></div>
+<div class="card gold"><div class="lbl">شکاف مصوبه</div><div class="val">۴۰.۶٪</div><div class="unit">پارک در برابر صندوق</div></div>
+<div class="card accent"><div class="lbl">نرخ پرداخت</div><div class="val">۳۶.۲٪</div><div class="unit">پرداخت به مصوب پارک</div></div>
+<div class="card green"><div class="lbl">میانگین مصوب</div><div class="val">۱.۲۹</div><div class="unit">م.ت / پذیرش</div></div>
+<div class="card purple"><div class="lbl">تمرکز ۳ استان</div><div class="val">۴۸.۵٪</div><div class="unit">از ثبت‌نام‌ها</div></div>
+</div>
+<ul class="bullets-cards">
+<li><span class="bn">۰۱</span><div><b>نشتی پیش از داوری:</b> ۳۸.۶۵ میلیارد تومان از ۱۴۲.۱ مصوب پارک، در ۳۲ پرونده و عمدتاً به دلیل نقص مدارک، از دستور کار خارج شد. <span class="hl">این رقم بیش از کل پرداخت واقعی سال به مراکز کوچک است.</span></div></li>
+<li><span class="bn">۰۲</span><div><b>شکاف دو مصوبه:</b> صندوق فقط ۵۹.۴٪ مصوب پارک را پذیرفت. این شکاف در پرونده‌های بزرگ‌تر بیشتر است — دانشگاه تبریز: ۴.۵ در برابر ۱.۵ میلیارد.</div></li>
+<li><span class="bn">۰۳</span><div><b>پراکندگی نرخ پذیرش:</b> از ۰٪ (قزوین و خراسان جنوبی) تا ۱۰۰٪ (شاهرود و البرز). تفاوت به‌تنهایی اثبات استاندارد یکسان نیست، اما نیازمند بررسی چارچوب مشترک ارزیابی است.</div></li>
+<li><span class="bn">۰۴</span><div><b>تمرکز جغرافیایی:</b> یزد به‌تنهایی ۲۹٪ ثبت‌نام‌ها را دارد. اردبیل و گیلان در ۱۴۰۴ هیچ ثبت‌نامی نداشتند. الگوی توزیع تقاضا نیازمند بررسی با ظرفیت بومی استان‌هاست.</div></li>
+<li><span class="bn">۰۵</span><div><b>نزدیکی به سقف:</b> میانگین نسبت مبلغ مصوب به سقف ۸۸.۸٪ است. این الگو <span class="hl">فرضیه غلبه سقف ثابت بر برآورد نیاز</span> را مطرح می‌کند؛ برای اثبات آن باید درخواست اولیه، مبلغ مصوب و دلایل تعدیل هر پرونده مقایسه شود.</div></li>
+</ul>
+</div>
+</section>
+<!-- ===== 05: 5 ISSUES ===== -->
+<section class="slide">
+<header class="sh"><span class="num">۰۵</span><h1>پنج عارضه در طول چرخه حمایت</h1><span class="sec">عارضه‌ها · کلیک برای جزئیات</span></header>
+<div class="sb">
+<div class="issue-grid">
+<div class="issue-card critical" data-drill="issue-1">
+<div class="ic-top"><div class="ic-num">۱</div><div class="ic-sev">بحرانی</div></div>
+<h3>پیش‌ارزیابی صلاحیت اجرایی</h3>
+<div class="ic-stat">۳۸.۶۵ <small>م.ت خروج</small></div>
+<p>۳۲ پرونده پیش از پرداخت خارج شد، عمدتاً به دلیل نقص مدارک — قابل شناسایی پیش از داوری.</p>
+<div class="ic-hint">جزئیات ◂</div>
+</div>
+<div class="issue-card critical" data-drill="issue-2">
+<div class="ic-top"><div class="ic-num">۲</div><div class="ic-sev">بحرانی</div></div>
+<h3>غلبه سقف ثابت بر منطق ارزش‌گذاری</h3>
+<div class="ic-stat">۴۰.۶٪ <small>شکاف مصوبه</small></div>
+<p>سقف ثابت ۱.۵ میلیاردی می‌تواند بر برآورد مستقل نیاز مالی اثر بگذارد؛ این فرضیه باید با داده درخواست اولیه و مبلغ نهایی آزمون شود.</p>
+<div class="ic-hint">جزئیات ◂</div>
+</div>
+<div class="issue-card high" data-drill="issue-3">
+<div class="ic-top"><div class="ic-num">۳</div><div class="ic-sev">بالا</div></div>
+<h3>طبقه‌بندی استراتژیک طرح‌ها</h3>
+<div class="ic-stat">۰–۱۰۰٪ <small>نرخ پذیرش</small></div>
+<p>نرخ پذیرش بین مراکز تفاوت گسترده دارد؛ چارچوب مشترک برای مقایسه وجود ندارد.</p>
+<div class="ic-hint">جزئیات ◂</div>
+</div>
+<div class="issue-card high" data-drill="issue-4">
+<div class="ic-top"><div class="ic-num">۴</div><div class="ic-sev">بالا</div></div>
+<h3>شکاف اطلاعاتی داور و متقاضی</h3>
+<div class="ic-stat">۵.۸ <small>م.ت مازندران</small></div>
+<p>هوش مصنوعی در تدوین طرح، غیبت فرد فنی در جلسه و ارائه‌های غیرآماده، داوری را دشوار می‌کند.</p>
+<div class="ic-hint">جزئیات ◂</div>
+</div>
+<div class="issue-card high" data-drill="issue-5">
+<div class="ic-top"><div class="ic-num">۵</div><div class="ic-sev">بالا</div></div>
+<h3>پایش میان‌دوره و پایان‌دوره</h3>
+<div class="ic-stat">۲ <small>ردیف از ۲۶۲</small></div>
+<p>سازوکار منسجمی برای پایش اثر پرداخت وجود ندارد؛ ستون راهبری عملاً خالی است.</p>
+<div class="ic-hint">جزئیات ◂</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ===== 06: MATRIX ===== -->
+<section class="slide">
+<header class="sh"><span class="num">۰۶</span><h1>اولویت مداخله: ابتدا گلوگاه‌های پراثر</h1><span class="sec">عارضه‌ها</span></header>
+<div class="sb">
+<div class="matrix-wrap">
+<div class="plot-container">
+<div class="axis-y">شدت اثر ←</div>
+<div class="axis-x">فوریت مداخله →</div>
+<div class="plot">
+<div class="quad-line h"></div>
+<div class="quad-line v"></div>
+<div class="quad-lbl" style="top:8px;right:8px">فوری + شدید</div>
+<div class="quad-lbl" style="top:8px;left:8px">میان‌مدت + شدید</div>
+<div class="quad-lbl" style="bottom:8px;right:8px">فوری + کم‌شدت</div>
+<div class="quad-lbl" style="bottom:8px;left:8px">بلندمدت + کم‌شدت</div>
+<div class="bubble crit" data-drill="issue-2" style="left:82%;bottom:85%">۲</div>
+<div class="bubble crit" data-drill="issue-1" style="left:92%;bottom:88%">۱</div>
+<div class="bubble-label" style="left:92%;bottom:68%">عارضه ۱</div>
+<div class="bubble-label" style="left:82%;bottom:65%">عارضه ۲</div>
+<div class="bubble high" data-drill="issue-4" style="left:55%;bottom:72%">۴</div>
+<div class="bubble high" data-drill="issue-3" style="left:44%;bottom:78%">۳</div>
+<div class="bubble high" data-drill="issue-5" style="left:22%;bottom:72%">۵</div>
+<div class="bubble-label" style="left:55%;bottom:52%">عارضه ۴</div>
+<div class="bubble-label" style="left:44%;bottom:58%">عارضه ۳</div>
+<div class="bubble-label" style="left:22%;bottom:52%">عارضه ۵</div>
+</div>
+</div>
+<div class="matrix-legend">
+<div class="lg"><div class="dot crit"></div><div><b>بحرانی · فوری</b><br/><span style="font-size:10px;color:var(--txt3)">عارضه ۱ و ۲</span></div></div>
+<div class="lg"><div class="dot high"></div><div><b>بالا · میان‌مدت</b><br/><span style="font-size:10px;color:var(--txt3)">عارضه ۳، ۴، ۵</span></div></div>
+<div style="font-size:10.5px;color:var(--txt3);line-height:1.7;padding:6px 2px;margin-top:6px">
+          عارضه‌های ۱ و ۲ در فوری‌ترین و شدیدترین نقطه قرار دارند — مداخله در فراخوان بعدی ۱۴۰۵.
+        </div>
+</div>
+</div>
+</div>
+</section>
+<!-- ===== 07: TRANSITION (upgraded) ===== -->
+<section class="slide">
+<header class="sh"><span class="num">۰۷</span><h1>تغییر پیشنهادی، عبور از احراز شرایط به مدیریت ارزش</h1><span class="sec">مدل پیشنهادی</span></header>
+<div class="sb">
+<div class="transition">
+<div class="trans-col old">
+<div class="th"><span class="ticn">✕</span> مدل فعلی</div>
+<h2>ممیزی هزینه‌محور</h2>
+<ul>
+<li>داور می‌پرسد: «آیا این طرح واجد شرایط است؟»</li>
+<li>مبلغ با سقف ثابت تطبیق داده می‌شود</li>
+<li>پرداخت ۵۰-۵۰ بدون پیوند به پیشرفت</li>
+<li>پس از پرداخت، هیچ پایشی وجود ندارد</li>
+<li>مجری تخصیص منابع</li>
+</ul>
+</div>
+<div class="trans-arrow">←</div>
+<div class="trans-col new">
+<div class="th"><span class="ticn">✓</span> مدل پیشنهادی</div>
+<h2>ارزش‌گذاری استراتژیک</h2>
+<ul>
+<li>داور می‌پرسد: «این طرح چقدر می‌ارزد؟»</li>
+<li>مبلغ از فرمول امتیاز، ریسک و سقف می‌آید</li>
+<li>پرداخت ۳۰-۴۰-۳۰ مبتنی بر مایلستون</li>
+<li>پایش ۶/۱۲/۱۸ ماهه با حلقه بازخورد</li>
+<li>نقش کارگزاری: مدیر پورتفوی فناوری</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- ===== 08: PIPELINE ===== -->
+<section class="slide">
+<header class="sh"><span class="num">۰۸</span><h1>مدل پیشنهادی: شش تصمیم پیوسته از صلاحیت تا اثر</h1><span class="sec">مدل پیشنهادی · کلیک برای جزئیات هر ایستگاه</span></header>
+<div class="sb">
+<div class="pipeline">
+<div class="pstation"><div class="box" data-drill="station-1"><div class="num">ایستگاه ۱</div><div class="nm">گیت صلاحیت</div><div class="out">قبول / رد</div><div class="relief">↳ حل عارضه ۱</div></div></div>
+<div class="pstation"><div class="box" data-drill="station-2"><div class="num">ایستگاه ۲</div><div class="nm">رده‌بندی استراتژیک</div><div class="out">سقف ۳۰/۱۵/۸</div><div class="relief">↳ حل عارضه ۳</div></div></div>
+<div class="pstation"><div class="box" data-drill="station-3"><div class="num">ایستگاه ۳</div><div class="nm">نمره‌دهی چهاربُعدی</div><div class="out">امتیاز ۰–۱۰۰</div><div class="relief">↳ حل عارضه ۲</div></div></div>
+<div class="pstation"><div class="box" data-drill="station-4"><div class="num">ایستگاه ۴</div><div class="nm">تعدیل ریسک</div><div class="out">ضریب ۰.۷–۱.۳</div><div class="relief">↳ حل عارضه ۲</div></div></div>
+<div class="pstation"><div class="box" data-drill="station-5"><div class="num">ایستگاه ۵</div><div class="nm">تعیین مبلغ</div><div class="out">مبلغ + ۳۰-۴۰-۳۰</div><div class="relief">↳ حل عارضه ۲</div></div></div>
+<div class="pstation"><div class="box" data-drill="station-6"><div class="num">ایستگاه ۶</div><div class="nm">پایش و بازخورد</div><div class="out">بازخورد به ایستگاه ۳</div><div class="relief">↳ حل عارضه ۵</div></div></div>
+</div>
+<div style="text-align:center;font-size:11px;color:var(--txt3);margin-top:6px">هر ایستگاه یک تصمیم می‌گیرد و ورودی ایستگاه بعدی را می‌سازد. برای مشاهده جزئیات، روی هر ایستگاه کلیک کنید.</div>
+</div>
+</section>
+<!-- ===== 09: COMPARISON (upgraded) ===== -->
+<section class="slide">
+<header class="sh"><span class="num">۰۹</span><h1>تفاوت مدل پیشنهادی در منطق تصمیم‌گیری است</h1><span class="sec">مدل پیشنهادی</span></header>
+<div class="sb">
+<div class="cmp">
+<div class="cmp-col now">
+<h3><span class="cicn">✕</span> مدل فعلی</h3>
+<div class="cmp-row"><span class="k">منطق تعیین مبلغ</span><span class="v">تعدیل درخواست نسبت به سقف ثابت</span></div>
+<div class="cmp-row"><span class="k">سقف حمایتی</span><span class="v">۱.۵ میلیارد تومان برای همه</span></div>
+<div class="cmp-row"><span class="k">پیش‌ارزیابی صلاحیت</span><span class="v">کنترل‌های موجود؛ دامنه نامشخص</span></div>
+<div class="cmp-row"><span class="k">طبقه‌بندی طرح‌ها</span><span class="v">ندارد</span></div>
+<div class="cmp-row"><span class="k">ابزار داوری</span><span class="v">ارائه شفاهی و بیزنس‌پلن</span></div>
+<div class="cmp-row"><span class="k">ساختار پرداخت</span><span class="v">دو مرحله ۵۰-۵۰</span></div>
+<div class="cmp-row"><span class="k">پایش پس از پرداخت</span><span class="v">ندارد</span></div>
+<div class="cmp-row"><span class="k">نقش داور</span><span class="v">ممیز واجد شرایط بودن</span></div>
+<div class="cmp-row"><span class="k">نقش کارگزاری</span><span class="v">توزیع‌کننده بودجه</span></div>
+</div>
+<div class="cmp-col next">
+<h3><span class="cicn">✓</span> مدل پیشنهادی</h3>
+<div class="cmp-row"><span class="k">منطق تعیین مبلغ</span><span class="v">فرمول ارزش‌گذاری (امتیاز × ریسک × سقف)</span></div>
+<div class="cmp-row"><span class="k">سقف حمایتی</span><span class="v">متغیر بر اساس سطح (۸ / ۱۵ / ۳۰)</span></div>
+<div class="cmp-row"><span class="k">پیش‌ارزیابی صلاحیت</span><span class="v">گیت ۷ معیاره پیش از داوری</span></div>
+<div class="cmp-row"><span class="k">طبقه‌بندی طرح‌ها</span><span class="v">سه سطح استراتژیک (الف/ب/ج)</span></div>
+<div class="cmp-row"><span class="k">ابزار داوری</span><span class="v">ارائه + دموی فنی + راستی‌آزمایی بازار</span></div>
+<div class="cmp-row"><span class="k">ساختار پرداخت</span><span class="v">سه مرحله مایلستون‌محور ۳۰-۴۰-۳۰</span></div>
+<div class="cmp-row"><span class="k">پایش پس از پرداخت</span><span class="v">۶/۱۲/۱۸ ماهه با حلقه بازخورد</span></div>
+<div class="cmp-row"><span class="k">نقش داور</span><span class="v">تحلیلگر ارزش‌گذاری</span></div>
+<div class="cmp-row"><span class="k">نقش کارگزاری</span><span class="v">مدیر پورتفوی فناوری</span></div>
+</div>
+</div>
+</div>
+</section><section class="slide">
+<header class="sh"><span class="num">۱۰</span><h1>پیش از استقرار کامل، مدل را اعتبارسنجی کنیم</h1><span class="sec">پیشنهاد اجرایی</span></header>
+<div class="sb">
+<div class="validation-grid">
+<div class="validation-card"><div class="vnum">۰۱</div><h3>بازآزمایی با پرونده‌های ۱۴۰۴</h3><p>اجرای مدل روی پرونده‌های گذشته و مقایسه خروجی آن با تصمیم‌ها و مبالغ واقعی؛ بدون بازنویسی نتایج تاریخی.</p></div>
+<div class="validation-card"><div class="vnum">۰۲</div><h3>سنجش توافق ارزیابان</h3><p>ارزیابی چند پرونده مشترک توسط داوران مختلف و اندازه‌گیری میزان همگرایی امتیازها و دلایل اختلاف.</p></div>
+<div class="validation-card"><div class="vnum">۰۳</div><h3>تحلیل حساسیت فرمول</h3><p>بررسی اثر تغییر وزن معیارها، ضریب ریسک و سقف هر سطح بر رتبه طرح‌ها و مبلغ حمایت پیشنهادی.</p></div>
+<div class="validation-card"><div class="vnum">۰۴</div><h3>اجرای موازی در یک فراخوان</h3><p>اجرای آزمایشی مدل در کنار فرایند جاری، ثبت اختلاف تصمیم‌ها و شناسایی نقاطی که نیاز به اصلاح دارند.</p></div>
+<div class="validation-card wide"><div class="vnum">۰۵</div><h3>تصویب نسخه نهایی بر مبنای شواهد</h3><p>پس از بررسی نتایج پایلوت، اصلاح وزن‌ها و دستورالعمل‌ها و سپس تصمیم‌گیری درباره استقرار کامل مدل.</p></div>
+</div>
+<div class="data-note"><b>کنترل داده پیش از ارائه نهایی:</b> در بخش‌های مختلف فایل، دامنه مراکز یک‌بار ۱۸ و در جزئیات ۲۰ مرکز ذکر شده؛ همچنین ۱۱۰ پذیرش منهای ۶۰ پرداخت، ۵۰ پرونده می‌شود، درحالی‌که متن خلاصه ۵۲ پرونده در انتظار را گزارش می‌کند. این موارد باید با منبع داده تطبیق داده شوند؛ در این نسخه هیچ‌کدام به‌صورت حدسی اصلاح نشده‌اند.</div>
+</div>
+</section>
+<!-- ===== 10: GANTT (upgraded) ===== -->
+<section class="slide">
+<header class="sh"><span class="num">۱۱</span><h1>اجرا در سه فاز، با شروع از گلوگاه‌های فوری</h1><span class="sec">اجرا</span></header>
+<div class="sb">
+<div class="gantt">
+<div></div>
+<div class="gh">آبان ۰۵</div><div class="gh">آذر ۰۵</div><div class="gh">دی ۰۵</div><div class="gh">بهمن ۰۵</div>
+<div class="gh">اسفند ۰۵</div><div class="gh">بهار ۰۶</div><div class="gh">تابستان ۰۶</div><div class="gh">پاییز ۰۶</div>
+<div class="gl"><span class="gl-ph" style="background:linear-gradient(135deg,#3b82f6,#60a5fa)">۱</span>فاز ۱ · ایستگاه ۱ و ۲</div>
+<div class="gc"><div class="gb p1"></div></div><div class="gc"><div class="gb p1"></div></div><div class="gc"><div class="gb p1"></div></div>
+<div class="gc"></div><div class="gc"></div><div class="gc"></div><div class="gc"></div><div class="gc"></div>
+<div class="gl"><span class="gl-ph" style="background:linear-gradient(135deg,#0e7490,#06b6d4)">◈</span>تفاهم‌نامه با صندوق</div>
+<div class="gc"><div class="gb p1"></div></div><div class="gc"><div class="gb p1"></div></div>
+<div class="gc"></div><div class="gc"></div><div class="gc"></div><div class="gc"></div><div class="gc"></div><div class="gc"></div>
+<div class="gl"><span class="gl-ph" style="background:linear-gradient(135deg,#b45309,#f59e0b)">۲</span>فاز ۲ · ایستگاه ۳ و ۴ و ۵</div>
+<div class="gc"></div><div class="gc"></div><div class="gc"></div>
+<div class="gc"><div class="gb p2"></div></div><div class="gc"><div class="gb p2"></div></div>
+<div class="gc"><div class="gb p2"></div></div><div class="gc"><div class="gb p2"></div></div><div class="gc"></div>
+<div class="gl"><span class="gl-ph" style="background:linear-gradient(135deg,#b45309,#f59e0b)">◈</span>داشبورد امتیازدهی</div>
+<div class="gc"></div><div class="gc"></div><div class="gc"></div>
+<div class="gc"><div class="gb p2"></div></div><div class="gc"><div class="gb p2"></div></div>
+<div class="gc"></div><div class="gc"></div><div class="gc"></div>
+<div class="gl"><span class="gl-ph" style="background:linear-gradient(135deg,#7e22ce,#a78bfa)">۳</span>فاز ۳ · ایستگاه ۶ (پایش)</div>
+<div class="gc"></div><div class="gc"></div><div class="gc"></div><div class="gc"></div><div class="gc"></div><div class="gc"></div>
+<div class="gc"></div><div class="gc"><div class="gb p3"></div></div>
+<div class="gl"><span class="gl-ph" style="background:linear-gradient(135deg,#3b82f6,#60a5fa)">◈</span>آموزش داوران</div>
+<div class="gc"></div><div class="gc"><div class="gb p1"></div></div><div class="gc"><div class="gb p1"></div></div>
+<div class="gc"><div class="gb p2"></div></div><div class="gc"><div class="gb p2"></div></div><div class="gc"></div><div class="gc"></div><div class="gc"></div>
+</div>
+<div class="grid g3" style="margin-top:10px">
+<div class="card accent"><div class="lbl">فاز ۱ · انتخاب</div><div class="val" style="font-size:14px">آبان – دی ۱۴۰۵</div><div class="note">ایستگاه ۱ و ۲ · بدون نیاز به زیرساخت فناوری</div></div>
+<div class="card gold"><div class="lbl">فاز ۲ · ارزش‌گذاری</div><div class="val" style="font-size:14px">بهمن ۱۴۰۵ – شهریور ۱۴۰۶</div><div class="note">ایستگاه ۳، ۴ و ۵ · نیازمند داشبورد و آموزش</div></div>
+<div class="card purple"><div class="lbl">فاز ۳ · یادگیری</div><div class="val" style="font-size:14px">پاییز ۱۴۰۶ به بعد</div><div class="note">ایستگاه ۶ · پس از یک چرخه کامل</div></div>
+</div>
+</div>
+</section>
+<!-- ===== 11: RACI (upgraded) ===== -->
+<section class="slide">
+<header class="sh"><span class="num">۱۲</span><h1>ماتریس مسئولیت تصمیم‌ها</h1><span class="sec">اجرا</span></header>
+<div class="sb">
+<div class="tbl-wrap">
+<table class="tbl">
+<thead><tr><th style="width:32%">تصمیم</th><th>پارک فاوا</th><th>کارگزاری</th><th>داوران</th><th>صندوق</th><th>پارک استانی</th></tr></thead>
+<tbody>
+<tr><td><b>تعیین سقف هر سطح</b></td><td class="rA">A</td><td class="rR">R</td><td class="rC">C</td><td class="rI">I</td><td class="rI">—</td></tr>
+<tr><td><b>طراحی فرم امتیازدهی</b></td><td class="rC">C</td><td class="rA">A/R</td><td class="rI">I</td><td class="rI">I</td><td class="rI">—</td></tr>
+<tr><td><b>طبقه‌بندی هر طرح</b></td><td class="rI">I</td><td class="rA">A</td><td class="rR">R</td><td class="rC">C</td><td class="rI">—</td></tr>
+<tr><td><b>پیشنهاد مبلغ حمایتی</b></td><td class="rI">I</td><td class="rA">A</td><td class="rR">R</td><td class="rI">I</td><td class="rI">—</td></tr>
+<tr><td><b>استعلام صلاحیت اجرایی</b></td><td class="rI">I</td><td class="rC">C</td><td class="rA">A/R</td><td class="rR">R</td><td class="rI">—</td></tr>
+<tr><td><b>تعیین شاخص‌های کلیدی</b></td><td class="rC">C</td><td class="rA">A/R</td><td class="rI">I</td><td class="rI">I</td><td class="rI">—</td></tr>
+<tr><td><b>تأیید تحویل مایلستون</b></td><td class="rI">I</td><td class="rA">A/R</td><td class="rR">R</td><td class="rI">I</td><td class="rI">—</td></tr>
+<tr><td><b>پایش اثرگذاری</b></td><td class="rA">A</td><td class="rR">R</td><td class="rI">I</td><td class="rC">C</td><td class="rI">—</td></tr>
+<tr><td><b>اصلاح وزن‌ها بر اساس بازخورد</b></td><td class="rA">A</td><td class="rR">R</td><td class="rI">I</td><td class="rC">C</td><td class="rI">—</td></tr>
+</tbody>
+</table>
+</div>
+<div style="font-size:10.5px;color:var(--txt3);margin-top:6px;text-align:center">A: پاسخگو · R: اجرا · C: مشورت · I: اطلاع</div>
+</div>
+</section>
+<!-- ===== 12: KPIs ===== -->
+<section class="slide">
+<header class="sh"><span class="num">۱۳</span><h1>شاخص‌های کلیدی موفقیت</h1><span class="sec">اجرا</span></header>
+<div class="sb">
+<div class="kpi-grid">
+<div class="kpi-card down">
+<h4>نسبت خروج به مصوب پارک <span class="dir">باید کاهش یابد</span></h4>
+<div class="kpi-nums">
+<span class="cur">۲۷.۲٪</span><span class="lbl">فعلی</span>
+<span class="arr">◂</span>
+<span class="tgt">۲۵٪</span><span class="lbl">هدف ۱۴۰۶</span>
+</div>
+<div class="kpi-bar"><div class="fill" style="width:87%"></div><div class="target-mark" style="right:80%"></div></div>
+<div class="kpi-delta">بهبود هدف: <b>۲.۲ واحد کاهش</b></div>
+<div class="kpi-note">کاهش نشتی بودجه پیش از داوری</div>
+</div>
+<div class="kpi-card down">
+<h4>شکاف مصوب پارک و صندوق <span class="dir">باید کاهش یابد</span></h4>
+<div class="kpi-nums">
+<span class="cur">۴۰.۶٪</span><span class="lbl">فعلی</span>
+<span class="arr">◂</span>
+<span class="tgt">۱۵٪</span><span class="lbl">هدف ۱۴۰۶</span>
+</div>
+<div class="kpi-bar"><div class="fill" style="width:90%"></div><div class="target-mark" style="right:33%"></div></div>
+<div class="kpi-delta">بهبود هدف: <b>۲۵.۶ واحد کاهش</b></div>
+<div class="kpi-note">همگرایی دو مصوبه</div>
+</div>
+<div class="kpi-card up">
+<h4>نسبت پرداخت به مصوب پارک <span class="dir">باید افزایش یابد</span></h4>
+<div class="kpi-nums">
+<span class="cur">۳۶.۲٪</span><span class="lbl">فعلی</span>
+<span class="arr">▸</span>
+<span class="tgt">۷۵٪</span><span class="lbl">هدف ۱۴۰۶</span>
+</div>
+<div class="kpi-bar"><div class="fill" style="width:48%;background:linear-gradient(90deg,#b45309,#f59e0b)"></div><div class="target-mark" style="right:100%"></div></div>
+<div class="kpi-delta">بهبود هدف: <b>۳۸.۸ واحد افزایش</b></div>
+<div class="kpi-note">افزایش تحقق پرداخت</div>
+</div>
+<div class="kpi-card gold-kpi">
+<h4>ضریب تمایز ارزشی (شاخص محوری) <span class="dir">باید حداقل بماند</span></h4>
+<div class="kpi-nums">
+<span class="cur" style="color:#fcd34d">۲۹.۴٪</span><span class="lbl">مبنا</span>
+<span class="arr">◂</span>
+<span class="tgt">۳۰٪</span><span class="lbl">هدف ۱۴۰۶</span>
+</div>
+<div class="kpi-bar"><div class="fill gold" style="width:98%"></div><div class="target-mark" style="right:100%"></div></div>
+<div class="kpi-delta">حداقل قابل قبول: <b>۳۰٪</b> · شرط توقف: کمتر از ۱۵٪ در دو چرخه</div>
+<div class="kpi-note">انحراف معیار مبالغ مصوب تقسیم بر میانگین — اگر پایین بماند، مدل به تشریفات تبدیل شده است</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ===== 13: RISKS (upgraded) ===== -->
+<section class="slide">
+<header class="sh"><span class="num">۱۴</span><h1>ریسک‌های پیاده‌سازی و هشدار زودهنگام</h1><span class="sec">اجرا</span></header>
+<div class="sb">
+<div style="display:flex;flex-direction:column;gap:8px">
+<div class="risk"><div class="rn"><span class="ri">⚠</span> مقاومت داوران در برابر فرمول جدید</div><div class="rl h">بالا</div><div class="rm">آموزش + ساده‌سازی داشبورد + حفظ اختیار عدول با ذکر دلیل · هشدار: افزایش انحراف‌های بدون دلیل مکتوب</div></div>
+<div class="risk"><div class="rn"><span class="ri">⚠</span> عدم همکاری صندوق در استعلام پیشین</div><div class="rl h">بالا</div><div class="rm">تطبیق خروج مبلغی و دلایل پرونده‌ها با صندوق · هشدار: عدم امضای تفاهم‌نامه تا پایان آذر ۱۴۰۵</div></div>
+<div class="risk"><div class="rn"><span class="ri">⚠</span> اعتراض شرکت‌های سطح سوم</div><div class="rl h">بالا</div><div class="rm">ارائه گزارش بازخورد تفصیلی + فرایند اعتراض رسمی · هشدار: بیش از ۲۰٪ اعتراض در اولین چرخه</div></div>
+<div class="risk med"><div class="rn"><span class="ri">◐</span> افزایش زمان داوری</div><div class="rl m">متوسط</div><div class="rm">اتوماسیون محاسبات + حذف ورود دستی · هشدار: عبور از محدوده حفاظتی ۲۰٪</div></div>
+<div class="risk"><div class="rn"><span class="ri">⚠</span> تبدیل مدل به تشریفات اداری</div><div class="rl h">بالا</div><div class="rm">پایش مستمر ضریب تمایز ارزشی + گزارش دوره‌ای · هشدار: ضریب تمایز کمتر از ۱۵٪ در دو چرخه</div></div>
+</div>
+</div>
+</section>
+<!-- ===== 14: DECISIONS ===== -->
+<section class="slide">
+<header class="sh"><span class="num">۱۵</span><h1>پنج تصمیم لازم برای آغاز پایلوت</h1><span class="sec">تصمیم</span></header>
+<div class="sb">
+<div class="dec-list">
+<div class="dec"><div class="dn">۱</div><div class="dt">تغییرپذیری سقف حمایتی<small>سه سقف (۳۰ / ۱۵ / ۸) به جای یک سقف ثابت</small></div><div class="dd">پایان آذر ۱۴۰۵</div><div class="dw">هیئت‌مدیره پارک</div></div>
+<div class="dec"><div class="dn">۲</div><div class="dt">تغییر ساختار پرداخت<small>از ۵۰-۵۰ به ۳۰-۴۰-۳۰ مبتنی بر پیشرفت و بازدید حضوری</small></div><div class="dd">پایان آذر ۱۴۰۵</div><div class="dw">پارک + صندوق</div></div>
+<div class="dec"><div class="dn">۳</div><div class="dt">شفاف‌سازی چارچوب کمی استانی<small>مکتوب‌سازی هر سهمیه یا محدودیت کمی</small></div><div class="dd">پایان آذر ۱۴۰۵</div><div class="dw">پارک فاوا</div></div>
+<div class="dec"><div class="dn">۴</div><div class="dt">انتقال استعلام‌های اجرایی به پیش از داوری<small>تفاهم‌نامه با صندوق برای استعلام بدهی، صیاد، حساب شرکتی</small></div><div class="dd">پایان آذر ۱۴۰۵</div><div class="dw">پارک + صندوق</div></div>
+<div class="dec"><div class="dn">۵</div><div class="dt">تخصیص منابع انسانی و فناوری<small>داشبورد امتیازدهی + تیم ارزش‌گذاری + تیم پایش</small></div><div class="dd">پایان دی ۱۴۰۵</div><div class="dw">پارک فاوا</div></div>
+</div>
+</div>
+</section>
+<!-- ===== 15: SUMMARY ===== -->
+<section class="slide">
+<header class="sh"><span class="num">۱۶</span><h1>جمع‌بندی: مسئله روشن، مدل پیشنهادی، تصمیم مشخص</h1><span class="sec">سه نکته کلیدی</span></header>
+<div class="sb">
+<div class="summary-grid">
+<div class="sum-card s1">
+<div class="icn">◉</div>
+<h3>تشخیص</h3>
+<div class="val">۲۷.۲٪ نشتی</div>
+<p>۳۸.۶۵ میلیارد تومان از مصوب پارک، پیش از هر پرداختی از دستور کار خارج شد. بیش از نیمی از آن قابل پیشگیری بود.</p>
+</div>
+<div class="sum-card s2">
+<div class="icn">◈</div>
+<h3>راه‌حل</h3>
+<div class="val">۶ ایستگاه</div>
+<p>از گیت صلاحیت تا پایش اثر — هر ایستگاه یک عارضه شناسایی‌شده را هدف می‌گیرد و ورودی ایستگاه بعدی را می‌سازد.</p>
+</div>
+<div class="sum-card s3">
+<div class="icn">◐</div>
+<h3>شرط موفقیت</h3>
+<div class="val">۵ تصمیم</div>
+<p>تصمیم‌های پنج‌گانه پیشنهادی، پیش از پایان آذر ۱۴۰۵، پیش‌نیاز شروع فاز اول و پایلوت در فراخوان بعدی است.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- ===== 16: FINAL ===== -->
+<section class="slide final-slide">
+<div class="final-orn a"></div>
+<div class="final-orn b"></div>
+<h1>گفت‌وگو و تصمیم‌گیری</h1>
+<p class="line">موافقت با پایلوت، تعیین مسئول اجرا و آغاز هماهنگی با صندوق<br/>سه گام برای شروع تغییر در فراخوان پیش‌رو</p>
+<div class="pill">با تشکر از توجه شما</div>
+</section>
+</div>
+<!-- nav -->
+<div class="dots" id="dots"></div>
+<div class="nav">
+<button id="prev">‹</button>
+<span class="ctr"><b id="cur">۱</b> / <span id="tot">۱۶</span></span>
+<button id="next">›</button>
+</div>
+<div class="hint">کلید ← / → · <kbd>Esc</kbd> بستن</div>
+<!-- ================= MODALS ================= -->
+<div class="modal" id="modal-issue-1"><div class="modal-content"><h2>عارضه ۱ · پیش‌ارزیابی صلاحیت اجرایی <button class="close">✕</button></h2>
+<p>در ۱۴۰۴، <b>۳۸.۶۵ میلیارد تومان</b> معادل ۲۷.۲٪ مصوب پارک، در ۳۲ پرونده از دستور کار خارج شد. علت غالب (۲۱ پرونده): <b>عدم تکمیل مدارک در بازه اعلام‌شده</b>.</p>
+<h3>نمونه‌های شاخص</h3>
+<ul>
+<li><b>کرمانشاه:</b> ۳.۵ میلیارد مصوب، ۳.۵ میلیارد خروج، صفر پرداخت. هر سه پرونده پیش از هر پرداختی خارج شدند.</li>
+<li><b>یزد:</b> ۱۵.۱ میلیارد خروج از ۳۹.۷ مصوب (۳۸٪) — بیشترین مبلغ مطلق در شبکه.</li>
+<li><b>اصفهان (شهرک علمی):</b> ۴.۵ میلیارد خروج از ۱۰.۵ مصوب (۴۳٪).</li>
+</ul>
+<h3>راه‌حل پیشنهادی</h3>
+<p>گیت ۷ معیاره پیش از داوری: شخصیت حقوقی، بدهی بانکی، چک برگشتی، حساب شرکتی، بدهی به صندوق، عضویت در پارک، مدارک هویتی. با تفاهم‌نامه با صندوق، امکان شناسایی زودهنگام و رفع نقص وجود دارد.</p>
+</div></div>
+<div class="modal" id="modal-issue-2"><div class="modal-content"><h2>عارضه ۲ · تقلیل ارزش‌گذاری به سقف‌سازی <button class="close">✕</button></h2>
+<p>سقف ثابت ۱.۵ میلیاردی، داور را وامی‌دارد مبلغ پیشنهادی را با سقف تطبیق دهد، نه با نیاز واقعی طرح. نتیجه: <b>شکاف ۴۰.۶٪</b> بین مصوب پارک و مصوب صندوق.</p>
+<h3>شواهد</h3>
+<ul>
+<li><b>دانشگاه تبریز:</b> مصوب پارک ۴.۵، مصوب صندوق ۱.۵ — یک‌سوم.</li>
+<li><b>مازندران:</b> ۲۰.۳ در برابر ۱۰.۰ — شکاف ۵۰٪.</li>
+<li><b>یزد (بزرگ‌ترین مرکز):</b> ۳۹.۷ در برابر ۲۳.۶ — شکاف ۴۰٪.</li>
+<li><b>میانگین نسبت مبلغ به سقف:</b> ۸۸.۸٪ — یعنی اکثر پیشنهادها نزدیک سقف.</li>
+</ul>
+<div class="callout"><b>نکته کلیدی:</b> صندوق با کاهش مبلغ، عملاً نشان می‌دهد رقم پیشنهادی داور با نیاز واقعی طرح فاصله دارد. این شکاف باید در چارچوب ارزش‌گذاری شفاف حل شود.</div>
+</div></div>
+<div class="modal" id="modal-issue-3"><div class="modal-content"><h2>عارضه ۳ · طبقه‌بندی استراتژیک طرح‌ها <button class="close">✕</button></h2>
+<p>نرخ پذیرش بین مراکز از <b>۰٪ تا ۱۰۰٪</b> نوسان دارد. بدون چارچوب مشترک، مقایسه بین استان‌ها و طرح‌ها دشوار است.</p>
+<h3>شواهد</h3>
+<ul>
+<li><b>شاهرود-آیسا و البرز:</b> ۱۰۰٪ پذیرش — همه ثبت‌نام‌ها پذیرفته شدند.</li>
+<li><b>قزوین و خراسان جنوبی:</b> ۰٪ پذیرش — هیچ طرحی از داوری عبور نکرد.</li>
+<li><b>یزد (بزرگ‌ترین مرکز):</b> ۳۰٪ پذیرش — ۷۰٪ طرح‌ها رد شدند.</li>
+</ul>
+<h3>راه‌حل پیشنهادی</h3>
+<p>طبقه‌بندی سه‌سطحی (الف/ب/ج) بر اساس مقیاس‌پذیری و اولویت استراتژیک، به‌عنوان مکمل داوری فنی موجود، نه جایگزین آن.</p>
+</div></div>
+<div class="modal" id="modal-issue-4"><div class="modal-content"><h2>عارضه ۴ · شکاف اطلاعاتی داور و متقاضی <button class="close">✕</button></h2>
+<p>داور در یک جلسه ۳۰–۶۰ دقیقه‌ای باید عمق دانش فنی تیم، واقعیت بازار و قابلیت اجرای طرح را بسنجد. سه ریشه شکاف:</p>
+<ul>
+<li><b>غیبت فرد فنی:</b> مدیرعامل یا عضو غیرفنی ارائه می‌دهد؛ فرد مسلط بر جزئیات فنی حاضر نیست.</li>
+<li><b>اتکای به هوش مصنوعی:</b> اسناد ظاهراً حرفه‌ای، اما در پرسش‌های عمیق، تیم اشراف کافی ندارد.</li>
+<li><b>عدم آمادگی ساختاریافته:</b> تیم‌ها با پاورپوینت وارد جلسه می‌شوند، در برابر پرسش‌های چالشی دفاع نمی‌کنند.</li>
+</ul>
+<p style="margin-top:8px"><b>شاهد کمّی:</b> مازندران — ۵.۸ میلیارد تومان خروج در ۷ پرونده.</p>
+<p><b>راه‌حل:</b> ابزارهای مکمل — دموی فنی، کدریویو، راستی‌آزمایی بازار — برای سطح الف.</p>
+</div></div>
+<div class="modal" id="modal-issue-5"><div class="modal-content"><h2>عارضه ۵ · پایش میان‌دوره و پایان‌دوره <button class="close">✕</button></h2>
+<p>سازوکار منسجمی برای پایش اثر پرداخت، مایلستون فنی یا بازگشت سرمایه وجود ندارد. ستون «راهبری پیشرفت ۵۰٪» در سوابق، فقط برای <b>۲ ردیف</b> از ۲۶۲ پرونده پر است.</p>
+<h3>پیامد</h3>
+<ul>
+<li>بدون حلقه بازخورد، خطاهای هر فراخوان در فراخوان بعدی تکرار می‌شود.</li>
+<li>شرکت‌هایی که تسهیلات را «وام عادی» می‌دانند، پس از مواجهه با شرایط صندوق (تضامین، بازپرداخت، گزارش‌دهی) منصرف می‌شوند.</li>
+<li>۵۲ پرونده هنوز هیچ پرداختی نگرفته‌اند؛ این یعنی تعهدات پارک به‌طور کامل محقق نشده.</li>
+</ul>
+<p style="margin-top:8px"><b>راه‌حل:</b> پایش ۶/۱۲/۱۸ ماهه با شاخص‌های ساده (تحویل مایلستون، رشد درآمد، اشتغال، جذب سرمایه خصوصی) و حلقه بازخورد به ایستگاه ۳.</p>
+</div></div>
+<div class="modal" id="modal-station-1"><div class="modal-content"><h2>ایستگاه ۱ · گیت صلاحیت <button class="close">✕</button></h2>
+<p><b>هدف:</b> حذف طرح‌های فاقد صلاحیت اجرایی، پیش از ورود به داوری فنی. ۷ معیار کنترل با تفاهم‌نامه صندوق.</p>
+<h3>معیارهای پیشنهادی</h3>
+<ul>
+<li>داشتن شخصیت حقوقی (ثبت شرکت)</li>
+<li>نداشتن بدهی معوق بانکی</li>
+<li>نداشتن چک برگشتی هیئت‌مدیره</li>
+<li>داشتن حساب و دسته‌چک شرکتی</li>
+<li>نداشتن بدهی به صندوق</li>
+<li>عضویت فعال در پارک استانی</li>
+<li>مدارک هویتی و ثبتی کامل</li>
+</ul>
+<div class="callout"><b>چرا؟</b> ۳۸.۶۵ میلیارد تومان خروج در ۱۴۰۴ — ۲۱ پرونده از ۳۲ به دلیل نقص مدارک که با این گیت قابل شناسایی بود.</div>
+</div></div>
+<div class="modal" id="modal-station-2"><div class="modal-content"><h2>ایستگاه ۲ · رده‌بندی استراتژیک <button class="close">✕</button></h2>
+<p><b>هدف:</b> تفکیک طرح‌ها بر اساس مقیاس‌پذیری و اولویت استراتژیک به سه سطح، با سقف حمایتی متناسب.</p>
+<h3>سه سطح پیشنهادی</h3>
+<ul>
+<li><b>سطح الف (استراتژیک ملی):</b> تا ۳۰ میلیارد ریال — مقیاس‌پذیری بالا، اولویت ملی، ریسک بالا.</li>
+<li><b>سطح ب (رشد منطقه‌ای):</b> تا ۱۵ میلیارد ریال — مقیاس‌پذیری متوسط، اولویت منطقه‌ای.</li>
+<li><b>سطح ج (توسعه استانی):</b> تا ۸ میلیارد ریال — مقیاس محدود، اولویت استانی، ریسک پایین.</li>
+</ul>
+<div class="callout"><b>چرا؟</b> سقف ثابت ۱.۵ میلیاردی، هم طرح‌های بزرگ را محدود می‌کند و هم طرح‌های کوچک را بی‌دلیل بزرگ.</div>
+</div></div>
+<div class="modal" id="modal-station-3"><div class="modal-content"><h2>ایستگاه ۳ · نمره‌دهی چهاربُعدی <button class="close">✕</button></h2>
+<p><b>هدف:</b> جایگزینی نمره کلی ذهنی با نمره‌دهی شفاف در چهار بُعد با وزن مشخص.</p>
+<h3>وزن‌های پیشنهادی</h3>
+<ul>
+<li><b>فنی و نوآوری (۳۰٪):</b> سطح نوآوری، TRL، مالکیت فکری، مزیت رقابتی فنی، پیچیدگی.</li>
+<li><b>بازار و مقیاس‌پذیری (۲۵٪):</b> اندازه بازار، کشش تقاضا، مقیاس‌پذیری، پتانسیل صادرات.</li>
+<li><b>تیم و اجرا (۲۰٪):</b> سابقه تیم، تکمیل تخصص‌ها، توان اجرا، حضور فرد فنی اصلی.</li>
+<li><b>مالی و مدل درآمدی (۲۵٪):</b> شفافیت درآمدی، حاشیه سود، نقطه سربه‌سر، توجیه مبلغ.</li>
+</ul>
+<p>هر زیرمعیار ۱–۵ امتیاز می‌گیرد. امتیاز کل × ۲۰ = امتیاز نهایی ۰–۱۰۰.</p>
+</div></div>
+<div class="modal" id="modal-station-4"><div class="modal-content"><h2>ایستگاه ۴ · تعدیل ریسک <button class="close">✕</button></h2>
+<p><b>هدف:</b> تعدیل امتیاز ایستا بر اساس سطح ریسک واقعی طرح — سه عامل: تکنولوژیک، بازار، اجرا.</p>
+<h3>فرمول</h3>
+<p style="font-family:monospace;direction:ltr;text-align:center;background:rgba(59,130,246,.08);padding:10px;border-radius:6px;margin:10px 0">
+    R_Avg = (R_Tech + R_Market + R_Exec) / 3<br/>
+    Coefficient = 0.7 + ((R_Avg − 1) × 0.15)
+  </p>
+<ul>
+<li><b>ضریب ۰.۷:</b> طرح پرریسک — مبلغ حمایتی ۳۰٪ کاهش.</li>
+<li><b>ضریب ۱.۰:</b> طرح متوسط — بدون تعدیل.</li>
+<li><b>ضریب ۱.۳:</b> طرح کم‌ریسک — مبلغ حمایتی ۳۰٪ افزایش.</li>
+</ul>
+</div></div>
+<div class="modal" id="modal-station-5"><div class="modal-content"><h2>ایستگاه ۵ · تعیین مبلغ و پرداخت <button class="close">✕</button></h2>
+<p><b>هدف:</b> محاسبه مبلغ بهینه با فرمول و ساختار پرداخت مایلستون‌محور.</p>
+<h3>فرمول</h3>
+<p style="font-family:monospace;direction:ltr;text-align:center;background:rgba(59,130,246,.08);padding:10px;border-radius:6px;margin:10px 0">
+    Support = min( Requested × Score/100 × Coefficient , Ceiling )
+  </p>
+<h3>سه سناریو</h3>
+<ul>
+<li><b>قوی (سطح الف، امتیاز ۸۸، ضریب ۱.۲):</b> درخواست ۲۵ ← مبلغ ۲۶.۴ میلیارد ریال</li>
+<li><b>متوسط (سطح ب، امتیاز ۷۲، ضریب ۱.۰):</b> درخواست ۱۵ ← مبلغ ۱۰.۸ میلیارد ریال</li>
+<li><b>ضعیف (سطح ج، امتیاز ۵۸، ضریب ۰.۸):</b> درخواست ۱۰ ← مبلغ ۴.۶ میلیارد ریال (به جای سقف ۱۰)</li>
+</ul>
+<h3>ساختار پرداخت ۳۰-۴۰-۳۰</h3>
+<ul>
+<li>مرحله ۱ (۳۰٪): امضای قرارداد + برنامه اجرایی</li>
+<li>مرحله ۲ (۴۰٪): تحویل مایلستون فنی اول</li>
+<li>مرحله ۳ (۳۰٪): محصول نهایی + گزارش اثرگذاری</li>
+</ul>
+</div></div>
+<div class="modal" id="modal-station-6"><div class="modal-content"><h2>ایستگاه ۶ · پایش و بازخورد <button class="close">✕</button></h2>
+<p><b>هدف:</b> سنجش اثر افزوده واقعی تسهیلات بر رشد شرکت و اکوسیستم، و بازگرداندن نتیجه به ایستگاه ۳ برای اصلاح وزن‌ها.</p>
+<h3>سه بازه پایش</h3>
+<ul>
+<li><b>۶ ماه:</b> تحویل مایلستون اول، شروع استخدام، پیشرفت فنی</li>
+<li><b>۱۲ ماه:</b> رشد درآمد، اشتغال‌زایی، جذب سرمایه خصوصی، وضعیت محصول</li>
+<li><b>۱۸ ماه:</b> اثر اکوسیستمی، بازگشت سرمایه حاکمیتی، تحلیل انحراف از پیش‌بینی</li>
+</ul>
+<div class="callout"><b>حلقه بازخورد:</b> نتایج پایش به ایستگاه ۳ برمی‌گردد تا وزن‌ها و سقف‌های فراخوان بعدی اصلاح شوند. بدون این حلقه، مدل به یک تشریفات اداری تبدیل می‌شود.</div>
+</div></div>
+<div class="modal" id="modal-kpi-reg"><div class="modal-content"><h2>ثبت‌نام‌ها <button class="close">✕</button></h2>
+<p>در سال ۱۴۰۴، ۲۶۲ ثبت‌نام در ۲۰ مرکز از ۱۴ استان ثبت شد. سه مرکز یزد، مازندران و کهگیلویه‌وبویراحمد ۴۸.۵٪ ثبت‌نام‌ها را در اختیار داشتند. اردبیل و گیلان هیچ ثبت‌نامی نداشتند.</p>
+<table class="tbl"><thead><tr><th>مرکز</th><th>ثبت‌نام</th><th>سهم</th></tr></thead><tbody>
+<tr><td>یزد</td><td>۷۶</td><td>۲۹٪</td></tr>
+<tr><td>مازندران</td><td>۳۱</td><td>۱۱.۸٪</td></tr>
+<tr><td>کهگیلویه</td><td>۲۰</td><td>۷.۶٪</td></tr>
+<tr><td>سایر (۱۷ مرکز)</td><td>۱۳۵</td><td>۵۱.۵٪</td></tr>
+</tbody></table>
+</div></div>
+<div class="modal" id="modal-kpi-dav"><div class="modal-content"><h2>داوری <button class="close">✕</button></h2>
+<p>۱۶۸ طرح از ۲۶۲ ثبت‌نام (۶۴.۱٪) به مرحله داوری رسیدند. فاصله ثبت‌نام تا داوری ۹۴ مورد است — این فاصله لزوماً ریزش نیست و می‌تواند شامل پرونده‌های در انتظار، ناقص یا منصرف باشد.</p>
+<table class="tbl"><thead><tr><th>شاخص</th><th>مقدار</th></tr></thead><tbody>
+<tr><td>نرخ ورود به داوری</td><td>۶۴.۱٪</td></tr>
+<tr><td>فاصله ثبت‌نام تا داوری</td><td>۹۴ پرونده</td></tr>
+<tr><td>فاصله داوری تا پذیرش</td><td>۵۸ پرونده</td></tr>
+</tbody></table>
+</div></div>
+<div class="modal" id="modal-kpi-acc"><div class="modal-content"><h2>پذیرش <button class="close">✕</button></h2>
+<p>۱۱۰ طرح از ۱۶۸ داوری‌شده (۶۵.۵٪) و ۴۲٪ از کل ثبت‌نام‌ها پذیرفته شدند. میانگین مصوب پارک به ازای هر پذیرش ۱.۲۹ میلیارد تومان است.</p>
+<table class="tbl"><thead><tr><th>شاخص</th><th>مقدار</th></tr></thead><tbody>
+<tr><td>نرخ پذیرش از داوری</td><td>۶۵.۵٪</td></tr>
+<tr><td>نرخ پذیرش از ثبت‌نام</td><td>۴۲٪</td></tr>
+<tr><td>میانگین مصوب به ازای پذیرش</td><td>۱.۲۹ م.ت</td></tr>
+</tbody></table>
+</div></div>
+<div class="modal" id="modal-kpi-park"><div class="modal-content"><h2>مصوب پارک <button class="close">✕</button></h2>
+<p>مجموع مصوب پارک فاوا در ۱۴۰۴ برابر ۱۴۲.۱ میلیارد تومان (۱,۴۲۱ میلیارد ریال). این رقم از سوابق پرداخت صندوق و صورت‌وضعیت مراکز استخراج شده است.</p>
+<table class="tbl"><thead><tr><th>مرکز</th><th>مصوب پارک (م.ت)</th></tr></thead><tbody>
+<tr><td>یزد</td><td>۳۹.۷</td></tr>
+<tr><td>مازندران</td><td>۲۰.۳</td></tr>
+<tr><td>شاهرود-آیسا</td><td>۱۱.۵</td></tr>
+<tr><td>اصفهان</td><td>۱۰.۵</td></tr>
+<tr><td>سایر (۱۶ مرکز)</td><td>۵۹.۱</td></tr>
+</tbody></table>
+</div></div>
+<div class="modal" id="modal-kpi-fund"><div class="modal-content"><h2>مصوب صندوق <button class="close">✕</button></h2>
+<p>مجموع مصوب صندوق پژوهش و فناوری ۸۴.۴۵ میلیارد تومان — معادل ۵۹.۴٪ مصوب پارک. یعنی ۵۷.۶۵ میلیارد تومان از مصوب پارک به صندوق نرسید.</p>
+<table class="tbl"><thead><tr><th>شاخص</th><th>مقدار</th></tr></thead><tbody>
+<tr><td>مصوب صندوق</td><td>۸۴.۴۵ م.ت</td></tr>
+<tr><td>نسبت به مصوب پارک</td><td>۵۹.۴٪</td></tr>
+<tr><td>شکاف</td><td>۵۷.۶۵ م.ت</td></tr>
+</tbody></table>
+</div></div>
+<div class="modal" id="modal-kpi-exit"><div class="modal-content"><h2>خروج از دستور کار <button class="close">✕</button></h2>
+<p>۳۸.۶۵ میلیارد تومان — معادل ۲۷.۲٪ مصوب پارک و ۴۵.۸٪ مصوب صندوق — در ۳۲ پرونده از دستور کار خارج شد. علت غالب: عدم تکمیل مدارک (۲۱ پرونده).</p>
+<table class="tbl"><thead><tr><th>مرکز</th><th>خروج (م.ت)</th><th>سهم از مصوب</th></tr></thead><tbody>
+<tr><td>یزد</td><td>۱۵.۱</td><td>۳۸٪</td></tr>
+<tr><td>مازندران</td><td>۵.۸</td><td>۲۹٪</td></tr>
+<tr><td>اصفهان</td><td>۴.۵</td><td>۴۳٪</td></tr>
+<tr><td>کرمانشاه</td><td>۳.۵</td><td>۱۰۰٪</td></tr>
+<tr><td>سایر</td><td>۹.۷۵</td><td>—</td></tr>
+</tbody></table>
+</div></div>
+<script type="fbe1a815c4da2db3f096cf68-text/javascript">
+(function(){
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  let cur = 0;
+
+  const dotsEl = document.getElementById('dots');
+  slides.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'nav-dot' + (i===0?' active':'');
+    d.onclick = () => go(i);
+    dotsEl.appendChild(d);
+  });
+  const dots = document.querySelectorAll('#dots .nav-dot');
+
+  function go(n){
+    if(n<0) n=0; if(n>=total) n=total-1;
+    if(n===cur) return;
+    slides[cur].classList.remove('active');
+    dots[cur].classList.remove('active');
+    cur = n;
+    slides[cur].classList.add('active');
+    dots[cur].classList.add('active');
+    document.getElementById('cur').textContent = toFa(cur+1);
+    document.getElementById('prog').style.width = ((cur+1)/total*100)+'%';
+    slides[cur].scrollTop = 0;
+  }
+
+  function toFa(n){ return String(n).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]); }
+
+  document.getElementById('next').onclick = () => go(cur+1);
+  document.getElementById('prev').onclick = () => go(cur-1);
+
+  document.addEventListener('keydown', e => {
+    if(e.key==='ArrowLeft' || e.key==='PageDown' || e.key===' '){ e.preventDefault(); go(cur+1); }
+    else if(e.key==='ArrowRight' || e.key==='PageUp'){ e.preventDefault(); go(cur-1); }
+    else if(e.key==='Home'){ e.preventDefault(); go(0); }
+    else if(e.key==='End'){ e.preventDefault(); go(total-1); }
+    else if(e.key==='Escape'){ closeAllModals(); }
+  });
+
+  // FIXED: data-drill values match id without the "modal-" prefix being doubled
+  document.querySelectorAll('[data-drill]').forEach(el => {
+    el.addEventListener('click', () => {
+      const id = el.getAttribute('data-drill');
+      const m = document.getElementById('modal-'+id);
+      if(m) m.classList.add('show');
+    });
+  });
+  document.querySelectorAll('.modal .close').forEach(b => {
+    b.onclick = () => b.closest('.modal').classList.remove('show');
+  });
+  document.querySelectorAll('.modal').forEach(m => {
+    m.addEventListener('click', e => { if(e.target===m) m.classList.remove('show'); });
+  });
+  function closeAllModals(){
+    document.querySelectorAll('.modal.show').forEach(m => m.classList.remove('show'));
+  }
+
+  document.getElementById('tot').textContent = toFa(total);
+  document.getElementById('cur').textContent = toFa(1);
+  document.getElementById('prog').style.width = (1/total*100)+'%';
+})();
+</script>
+<script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="fbe1a815c4da2db3f096cf68-|49" defer></script></body>
+</html>
